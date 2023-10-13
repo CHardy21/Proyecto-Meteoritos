@@ -8,7 +8,6 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 451.331, 290.293 )
 mass = 5.0
-angular_damp = 4.0
 potencia_motor = 10
 potencia_rotacion = 10
 
