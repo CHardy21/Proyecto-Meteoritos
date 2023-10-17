@@ -37,7 +37,7 @@ func disparar() -> void:
 	sfx_disparo.play()
 	timer_enfriamiento.start()
 	for punto_disparo in puntos_disparo:
-		var new_proyectil:Proyectil = Proyectil.instance()
+		var new_proyectil:Proyectil = proyectil.instance()
 		new_proyectil.crear(
 			punto_disparo.global_position,
 			get_owner().rotation,
@@ -49,7 +49,7 @@ func disparar() -> void:
 
 ## setters y getters
 func set_esta_disparando(disparando:bool) -> void:
-	esta_disparando = esta_disparando
+	esta_disparando = disparando
 
 
 
