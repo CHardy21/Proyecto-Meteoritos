@@ -34,9 +34,10 @@ func almacenar_puntos_disparo() -> void:
 
 func disparar() -> void:
 	esta_enfriado = false
-	sfx_disparo.play()
+	
 	timer_enfriamiento.start()
 	for punto_disparo in puntos_disparo:
+		sfx_disparo.play()
 		var new_proyectil:Proyectil = proyectil.instance()
 		new_proyectil.crear(
 			punto_disparo.global_position,
@@ -44,8 +45,7 @@ func disparar() -> void:
 			velocidad_proyectil,
 			danio_proyectil
 		)
-	print("piw piw esttoy disparando")
-
+		Eventos.emit_signal("disparo", new_proyectil)
 
 ## setters y getters
 func set_esta_disparando(disparando:bool) -> void:
