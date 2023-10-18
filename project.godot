@@ -14,8 +14,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game/Proyectiles/Canion.gd"
 }, {
+"base": "Node2D",
+"class": "Nivel",
+"language": "GDScript",
+"path": "res://Game/Niveles/Nivel.gd"
+}, {
 "base": "RigidBody2D",
-"class": "Playes",
+"class": "Players",
 "language": "GDScript",
 "path": "res://Game/Naves/Players/Player.gd"
 }, {
@@ -23,11 +28,18 @@ _global_script_classes=[ {
 "class": "Proyectil",
 "language": "GDScript",
 "path": "res://Game/Proyectiles/Proyectil.gd"
+}, {
+"base": "RayCast2D",
+"class": "RayoLaser",
+"language": "GDScript",
+"path": "res://Game/Proyectiles/LaserBeam/LaserBeam2D.gd"
 } ]
 _global_script_class_icons={
 "Canion": "",
-"Playes": "",
-"Proyectil": ""
+"Nivel": "",
+"Players": "",
+"Proyectil": "",
+"RayoLaser": ""
 }
 
 [application]
@@ -35,6 +47,10 @@ _global_script_class_icons={
 config/name="Proyecto Meteoritos"
 run/main_scene="res://Game/Niveles/NivelTest.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Eventos="*res://Game/Autoloads/Eventos.gd"
 
 [input]
 
@@ -66,6 +82,12 @@ key_shoot={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+key_laser_shoot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

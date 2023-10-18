@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/proyectil_LaserSmall_002.ogg-0e1df595dbe38e88331417f87e32c54e.oggstr"
+
+[deps]
+
+source_file="res://Game/Proyectiles/proyectil_LaserSmall_002.ogg"
+dest_files=[ "res://.import/proyectil_LaserSmall_002.ogg-0e1df595dbe38e88331417f87e32c54e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

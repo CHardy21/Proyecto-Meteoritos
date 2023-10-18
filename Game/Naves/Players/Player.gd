@@ -1,4 +1,4 @@
-class_name Playes
+class_name Players
 extends RigidBody2D
 
 ## Atributos export
@@ -11,8 +11,17 @@ var dir_rotacion: int = 0
 
 ## Atributos onready
 onready var canion:Canion = $Canion
+onready var laser: RayoLaser = $LaserBeam2D
+
 
 ## Metodos
+func _unhandled_input(event: InputEvent) -> void:
+	#disparo rayo
+	if event.is_action_pressed("key_laser_shoot"):
+		laser.set_is_casting(true)
+	if event.is_action_released("key_laser_shoot"):
+		laser.set_is_casting(false)
+
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
 	apply_torque_impulse(dir_rotacion * potencia_rotacion)
