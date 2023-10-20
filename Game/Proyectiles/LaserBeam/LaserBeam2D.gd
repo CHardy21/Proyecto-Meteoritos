@@ -24,7 +24,7 @@ onready var collision_particles := $CollisionParticles2D
 onready var beam_particles := $BeamParticles2D
 
 onready var line_width: float = fill.width
-
+onready var laser_sfx : AudioStreamPlayer2D = $LaserSFX
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -41,10 +41,12 @@ func set_is_casting(cast: bool) -> void:
 	is_casting = cast
 	
 	if is_casting:
+		laser_sfx.play()
 		cast_to = Vector2.ZERO
 		fill.points[1] = cast_to
 		appear()
 	else:
+		laser_sfx.stop()
 		# Reset the laser endpoint
 		fill.points[1] = Vector2.ZERO
 		
