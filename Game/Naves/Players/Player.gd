@@ -96,11 +96,12 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.VIVO:
 			colisionador.set_deferred("disabled",false)
 			canion.set_puede_disparar(true)
-		ESTADO.INVENSIBLE:
+		ESTADO.INVENCIBLE:
 			colisionador.set_deferred("disabled",true)
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disabled",true)
 			canion.set_puede_disparar(true)
+			Eventos.emit_signal("nave_destruida", global_position)
 			queue_free()
 		_:
 			printerr("ERROR de Estado...")
@@ -111,8 +112,7 @@ func esta_input_activo() ->bool:
 		return false
 	return true
 
+func destruir() -> void:
+	controlador_estados(ESTADO.MUERTO)
 
 
-
-		
-		
