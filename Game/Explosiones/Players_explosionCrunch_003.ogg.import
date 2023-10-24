@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Players_explosionCrunch_003.ogg-57226358ca523aa4ab12c68dff5b8b15.oggstr"
+
+[deps]
+
+source_file="res://Game/Explosiones/Players_explosionCrunch_003.ogg"
+dest_files=[ "res://.import/Players_explosionCrunch_003.ogg-57226358ca523aa4ab12c68dff5b8b15.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

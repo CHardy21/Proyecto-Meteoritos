@@ -3,7 +3,7 @@
 [ext_resource path="res://Game/Explosiones/sparkle.png" type="Texture" id=1]
 [ext_resource path="res://Game/Explosiones/explosion_gradient.tres" type="Texture" id=2]
 [ext_resource path="res://Game/Explosiones/puff.png" type="Texture" id=3]
-[ext_resource path="res://Game/Naves/Players/Players_explosionCrunch_003.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Game/Explosiones/Players_explosionCrunch_003.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Game/Explosiones/puff_smooth.png" type="Texture" id=5]
 [ext_resource path="res://Game/Explosiones/scraps_gradient.tres" type="Texture" id=6]
 
@@ -208,6 +208,8 @@ z_index = 1
 z_as_relative = false
 
 [node name="SmokeParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color( 0.0627451, 0.0588235, 0.0588235, 0.639216 )
+emitting = false
 amount = 16
 lifetime = 3.0
 preprocess = 0.6
