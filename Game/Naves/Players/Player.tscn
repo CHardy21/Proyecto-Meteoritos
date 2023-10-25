@@ -91,7 +91,6 @@ position = Vector2( -9, 0 )
 points = PoolVector2Array( 0, 0, 80, 0 )
 width = 60.0
 is_emitting = true
-resolution = 5.0
 lifetime = 1.0
 max_points = 250
 target_path = NodePath("..")
