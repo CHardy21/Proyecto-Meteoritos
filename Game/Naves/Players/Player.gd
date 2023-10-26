@@ -9,6 +9,7 @@ export var potencia_motor = 20
 export var potencia_rotacion = 20
 export var estela_max: int = 150
 
+export var hitspoint:float = 15.0
 
 ## Atributos
 var empuje: Vector2 = Vector2.ZERO
@@ -21,6 +22,7 @@ onready var canion:Canion = $Canion
 onready var laser: RayoLaser = $LaserBeam2D
 onready var estela:Estela = $PositionEstela/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
+onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
 
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 
@@ -115,4 +117,10 @@ func esta_input_activo() ->bool:
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
 
-
+func recibir_danio(danio:float) -> void:
+	hitspoint -= danio
+	print("vida restante player: ", hitspoint)
+	if hitspoint <= 0.0:
+		destruir()
+		
+	impacto_sfx.play()
