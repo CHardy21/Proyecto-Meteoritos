@@ -25,6 +25,7 @@ onready var motor_sfx:Motor = $MotorSFX
 onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
 
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var escudo:Escudo = $Escudo
 
 
 ## Metodos
@@ -50,6 +51,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if(event.is_action_released("key_arriba") or event.is_action_released("key_abajo")):
 		motor_sfx.sonido_off()
+	
+	#Control Escudo
+	if event.is_action_pressed("key_shield") and not escudo.get_esta_activado():
+		escudo.activar()
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
