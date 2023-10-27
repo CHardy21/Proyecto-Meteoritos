@@ -9,6 +9,7 @@ export var potencia_motor = 20
 export var potencia_rotacion = 20
 export var estela_max: int = 150
 
+export var hitspoint:float = 15.0
 
 ## Atributos
 var empuje: Vector2 = Vector2.ZERO
@@ -21,8 +22,10 @@ onready var canion:Canion = $Canion
 onready var laser: RayoLaser = $LaserBeam2D
 onready var estela:Estela = $PositionEstela/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
+onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
 
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var escudo:Escudo = $Escudo
 
 
 ## Metodos
@@ -48,6 +51,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if(event.is_action_released("key_arriba") or event.is_action_released("key_abajo")):
 		motor_sfx.sonido_off()
+	
+	#Control Escudo
+	if event.is_action_pressed("key_shield") and not escudo.get_esta_activado():
+		escudo.activar()
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
@@ -115,4 +122,10 @@ func esta_input_activo() ->bool:
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
 
-
+func recibir_danio(danio:float) -> void:
+	hitspoint -= danio
+	print("vida restante player: ", hitspoint)
+	if hitspoint <= 0.0:
+		destruir()
+		
+	impacto_sfx.play()
