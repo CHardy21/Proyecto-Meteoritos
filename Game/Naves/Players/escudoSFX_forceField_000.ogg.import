@@ -11,5 +11,5 @@ dest_files=[ "res://.import/escudoSFX_forceField_000.ogg-1872b5ab1fb61e9ffe24ba8
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

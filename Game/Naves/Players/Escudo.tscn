@@ -203,7 +203,10 @@ tracks/5/keys = {
 }
 
 [node name="Escudo" type="Area2D"]
+collision_layer = 0
+collision_mask = 2147483664
 script = ExtResource( 5 )
+energia = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -232,7 +235,8 @@ anims/default = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 0.8
+volume_db = -10.0
 pitch_scale = 0.8
 bus = "SFX"
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
