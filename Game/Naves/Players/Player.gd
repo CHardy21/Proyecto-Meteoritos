@@ -124,7 +124,7 @@ func destruir() -> void:
 
 func recibir_danio(danio:float) -> void:
 	hitspoint -= danio
-	print("vida restante player: ", hitspoint)
+	# print("vida restante player: ", hitspoint)
 	if hitspoint <= 0.0:
 		destruir()
 		

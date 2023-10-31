@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 ## Metodos Custom
 func recibir_danio(danio:float) -> void:
 	hitspoint -= danio
-	print("vida restante: ", hitspoint)
+	# print("vida restante: ", hitspoint)
 	if hitspoint <= 0.0:
 		queue_free()
 	
