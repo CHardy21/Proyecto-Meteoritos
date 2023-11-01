@@ -1,3 +1,4 @@
+# Proyectil.gd
 class_name Proyectil
 extends Area2D
 
@@ -26,7 +27,7 @@ func _on_body_entered(body: Node) -> void:
 
 ## Metodos Custom
 func daniar(otro_cuerpo:CollisionObject2D) -> void:
-	# print("Impacto a ", otro_cuerpo.name)
+	print("Impacto a ", otro_cuerpo.name)
 	if otro_cuerpo.has_method("recibir_danio"):
 		otro_cuerpo.recibir_danio(danio)
 	queue_free()

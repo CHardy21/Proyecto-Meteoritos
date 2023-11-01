@@ -10,9 +10,10 @@ export var hitspoint_base: float = 10.0
 ## Atributos
 var hitspoints:float
 
-## Metodos
-func _ready() -> void:
-	angular_velocity = vel_ang_base
+## Atributos onready
+onready var impacto_sfx:AudioStreamPlayer2D = $ImpactoSFX
+onready var anim_impacto:AnimationPlayer = $AnimationPlayer
+
 
 ## Constructor
 func crear(pos:Vector2, dir:Vector2,tamanio:float) -> void:
@@ -33,5 +34,23 @@ func crear(pos:Vector2, dir:Vector2,tamanio:float) -> void:
 	
 	# solo debug
 	print("hitspoint: ", hitspoints)
-	
-	
+
+
+## Metodos
+func _ready() -> void:
+	angular_velocity = vel_ang_base
+
+
+## Metodos Custom
+func recibir_danio(danio:float) -> void:
+	hitspoints -= danio
+	print("vida restante: ", hitspoints)
+	if hitspoints <= 0.0:
+		destruir()
+	impacto_sfx.play()
+	anim_impacto.play("impacto")
+
+
+func destruir() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
+	queue_free()

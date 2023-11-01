@@ -25,17 +25,17 @@ potencia_rotacion = 10
 position = Vector2( 1163.51, 256.579 )
 
 [node name="MeteoritoSpawner" parent="." instance=ExtResource( 6 )]
-position = Vector2( 234.932, 74.751 )
-direccion = Vector2( 1, 2 )
+position = Vector2( 548.298, 93.6285 )
+direccion = Vector2( 0, 0 )
 
 [node name="MeteoritoSpawner2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1692.58, 74.751 )
-direccion = Vector2( -1, 2 )
+position = Vector2( 1666.15, 184.24 )
+direccion = Vector2( -2, 1 )
 
 [node name="MeteoritoSpawner3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 170.859, 1131.94 )
-direccion = Vector2( 1, -2 )
+direccion = Vector2( 2, -1 )
 
 [node name="MeteoritoSpawner4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1729.95, 934.388 )
-direccion = Vector2( -1, -2 )
+position = Vector2( 1435.46, 666.328 )
+direccion = Vector2( -2, -1 )

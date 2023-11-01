@@ -3,3 +3,5 @@
 [ext_resource path="res://Game/Proyectiles/Proyectil.tscn" type="PackedScene" id=1]
 
 [node name="ProyectilPlayer" instance=ExtResource( 1 )]
+z_index = 39
+collision_mask = 22

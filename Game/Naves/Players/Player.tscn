@@ -93,9 +93,12 @@ position = Vector2( -9, 0 )
 points = PoolVector2Array( 0, 0, 80, 0 )
 width = 60.0
 is_emitting = true
+resolution = 5.0
 lifetime = 1.0
 max_points = 250
 target_path = NodePath("..")
+
+[node name="Escudo" parent="." instance=ExtResource( 9 )]
 
 [node name="MotorSFX" parent="." instance=ExtResource( 7 )]
 
@@ -107,8 +110,6 @@ anims/spawn = SubResource( 3 )
 [node name="ImpactosSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 bus = "SFX"
-
-[node name="Escudo" parent="." instance=ExtResource( 9 )]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Canion"]
