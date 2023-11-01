@@ -400,6 +400,8 @@ tracks/15/keys = {
 }
 
 [node name="Meteorito" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 25
 mode = 1
 physics_material_override = ExtResource( 1 )
 script = ExtResource( 2 )

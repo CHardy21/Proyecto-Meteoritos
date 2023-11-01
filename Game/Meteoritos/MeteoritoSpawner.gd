@@ -1,4 +1,4 @@
-# MeteoritoSpawner
+# # MeteoritoSpawner.gd
 class_name MeteoritoSpawner
 extends Position2D
 
