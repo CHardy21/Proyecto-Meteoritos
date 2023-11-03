@@ -6,3 +6,5 @@ signal disparo(proyectil)
 signal nave_destruida(posicion)
 # warning-ignore:unused_signal
 signal spawn_meteorito(posicion, direccion, tamanio)
+# warning-ignore:unused_signal
+signal meteorito_destruido(posicion)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game/Naves/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Niveles/Nivel.gd" type="Script" id=2]
@@ -7,11 +7,30 @@
 [ext_resource path="res://Game/Naves/Enemys/EnemyDummy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game/Meteoritos/MeteoritoSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Meteoritos/Meteorito.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Game/Niveles/Fondos/bg_purple.png" type="Texture" id=9]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
 explosion = ExtResource( 4 )
 meteorito = ExtResource( 7 )
+explosion_meteorito = ExtResource( 8 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 2048, 2048 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_right = 2048.0
+margin_bottom = 2048.0
+texture = ExtResource( 9 )
+expand = true
+flip_h = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -25,17 +44,17 @@ potencia_rotacion = 10
 position = Vector2( 1163.51, 256.579 )
 
 [node name="MeteoritoSpawner" parent="." instance=ExtResource( 6 )]
-position = Vector2( 548.298, 93.6285 )
-direccion = Vector2( 0, 0 )
+position = Vector2( 197.177, 25.6697 )
+direccion = Vector2( 2, 1 )
 
 [node name="MeteoritoSpawner2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1666.15, 184.24 )
+position = Vector2( 1511.35, -42.2897 )
 direccion = Vector2( -2, 1 )
 
 [node name="MeteoritoSpawner3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 816.469, 769.492 )
+position = Vector2( 280.349, 1018.67 )
 direccion = Vector2( 2, -1 )
 
 [node name="MeteoritoSpawner4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1435.46, 666.328 )
+position = Vector2( 1582.7, 1051.43 )
 direccion = Vector2( -2, -1 )
