@@ -63,6 +63,11 @@ _global_script_classes=[ {
 "class": "RayoLaser",
 "language": "GDScript",
 "path": "res://Game/Proyectiles/LaserBeam/LaserBeam2D.gd"
+}, {
+"base": "Node2D",
+"class": "SectorMeteoritos",
+"language": "GDScript",
+"path": "res://Game/Meteoritos/SectorMeteoritos.gd"
 } ]
 _global_script_class_icons={
 "Canion": "",
@@ -75,7 +80,8 @@ _global_script_class_icons={
 "Nivel": "",
 "Players": "",
 "Proyectil": "",
-"RayoLaser": ""
+"RayoLaser": "",
+"SectorMeteoritos": ""
 }
 
 [application]

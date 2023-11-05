@@ -401,12 +401,11 @@ tracks/15/keys = {
 
 [node name="Meteorito" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 25
+collision_mask = 29
 physics_material_override = ExtResource( 1 )
 gravity_scale = 0.0
 script = ExtResource( 2 )
 vel_lineal_base = Vector2( 150, 150 )
-vel_ang_base = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
