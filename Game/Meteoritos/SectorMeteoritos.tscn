@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 960, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.472, 559.931 )
+
+[node name="SectorMeteoritos" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BordesNavePlayers" type="Node2D" parent="."]
+position = Vector2( -960.083, -536.923 )
+
+[node name="BordeSuperior" type="StaticBody2D" parent="BordesNavePlayers"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeSuperior"]
+position = Vector2( 960, 8 )
+shape = SubResource( 1 )
+
+[node name="BordeInferior" type="StaticBody2D" parent="BordesNavePlayers"]
+position = Vector2( 0, 1072 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeInferior"]
+position = Vector2( 964.757, -9 )
+shape = SubResource( 1 )
+
+[node name="BordeIzquierdo" type="StaticBody2D" parent="BordesNavePlayers"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeIzquierdo"]
+position = Vector2( 2.37842, 537.522 )
+shape = SubResource( 2 )
+
+[node name="BordeDerecho" type="StaticBody2D" parent="BordesNavePlayers"]
+position = Vector2( 1905.11, -2.51367 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeDerecho"]
+position = Vector2( 2.37842, 537.522 )
+shape = SubResource( 2 )
