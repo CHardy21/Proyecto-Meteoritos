@@ -405,7 +405,8 @@ collision_mask = 29
 physics_material_override = ExtResource( 1 )
 gravity_scale = 0.0
 script = ExtResource( 2 )
-vel_lineal_base = Vector2( 150, 150 )
+vel_lineal_base = Vector2( 250, 250 )
+vel_ang_base = 10.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -422,21 +423,25 @@ anims/default = SubResource( 1 )
 anims/impacto = SubResource( 2 )
 
 [node name="SpriteDiminuto_1" type="Sprite" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 6 )
 
 [node name="SpriteDiminuto_2" type="Sprite" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 5 )
 
 [node name="SpriteDiminuto_3" type="Sprite" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 6 )
 
 [node name="SpriteDiminuto_4" type="Sprite" parent="."]
+visible = false
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 5 )

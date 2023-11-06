@@ -6,12 +6,10 @@ export var explosion:PackedScene = null
 export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 
-
-
 onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
 
-
+# Metodos
 func _ready() -> void:
 	conectar_signals()
 	crear_contenedores()
@@ -26,7 +24,8 @@ func conectar_signals() -> void:
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
 	# warning-ignore:return_value_discarded
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
-	
+	# warning-ignore:return_value_discarded
+	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro")
 
 func crear_contenedores() -> void:
 	contenedor_proyectiles = Node.new()
@@ -62,3 +61,10 @@ func _on_meteorito_destruido(pos:Vector2) -> void:
 	var new_explosion:ExplosionMeteorito = explosion_meteorito.instance()
 	new_explosion.global_position = pos
 	add_child(new_explosion)
+
+func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int)-> void:
+	if tipo_peligro == "Meteorito":
+		# creamos dinamicamente el meteorito
+		pass
+	elif tipo_peligro == "Enemigo":
+		pass
