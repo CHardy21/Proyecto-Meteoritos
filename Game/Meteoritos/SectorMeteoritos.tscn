@@ -5,28 +5,28 @@
 [ext_resource path="res://Game/Meteoritos/Peligro_forceField_002.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Game/Kenney Future.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 50
 outline_size = 3
 outline_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 960, 32 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 35.472, 559.931 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 38.3759, 901.055 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 36.1506, 896.985 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 1437.08, 31.9741 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 1436.15, 31.8934 )
 
 [sub_resource type="Animation" id=8]
@@ -93,6 +93,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ 40, 50, 40, 50, 40, 50, 40, 50, 40, 50 ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath("SpawnTimer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ -1 ],
+"method": "start"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "default"
@@ -150,7 +164,7 @@ margin_left = -589.0
 margin_top = -68.5
 margin_right = 589.0
 margin_bottom = 68.5
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "¡ADVERTENCIA!
@@ -171,28 +185,28 @@ position = Vector2( 0, -540 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeSuperior"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="BordeInferior" type="StaticBody2D" parent="BordesNavePlayers"]
 position = Vector2( 0, 540 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeInferior"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="BordeIzquierdo" type="StaticBody2D" parent="BordesNavePlayers"]
 position = Vector2( -960, 0 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeIzquierdo"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="BordeDerecho" type="StaticBody2D" parent="BordesNavePlayers"]
 position = Vector2( 960, 0 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordesNavePlayers/BordeDerecho"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="DetectorFueraZona" type="Node2D" parent="."]
 
@@ -200,25 +214,25 @@ shape = SubResource( 2 )
 position = Vector2( -1400, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorIzquierda"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="DetectorDerecha" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 1400, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorDerecha"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="DetectorSuperior" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 0, -900 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorSuperior"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="DetectorInferior" type="Area2D" parent="DetectorFueraZona"]
 position = Vector2( 0, 900 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorFueraZona/DetectorInferior"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Spawners" type="Node2D" parent="."]
 
@@ -287,7 +301,6 @@ position = Vector2( -1180, -360 )
 direccion = Vector2( 2, 1 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"

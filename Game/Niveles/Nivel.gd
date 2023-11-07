@@ -5,9 +5,11 @@ extends Node2D
 export var explosion:PackedScene = null
 export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
+export var sector_meteoritos:PackedScene = null
 
 onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
+onready var contenedor_sector_meteoritos:Node
 
 # Metodos
 func _ready() -> void:
@@ -35,6 +37,16 @@ func crear_contenedores() -> void:
 	contenedor_meteoritos = Node.new()
 	contenedor_meteoritos.name = "ContenedorMeteoritos"
 	add_child(contenedor_meteoritos)
+	
+	contenedor_sector_meteoritos = Node.new()
+	contenedor_sector_meteoritos.name = "ContenedorSectorMeteoritos"
+	add_child(contenedor_sector_meteoritos)
+
+func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int)->void:
+	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
+	new_sector_meteoritos.global_position = centro_camara
+	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
+
 
 ## Conectar señales externas
 func _on_disparo(proyectil:Proyectil) -> void:
@@ -65,6 +77,6 @@ func _on_meteorito_destruido(pos:Vector2) -> void:
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int)-> void:
 	if tipo_peligro == "Meteorito":
 		# creamos dinamicamente el meteorito
-		pass
+		crear_sector_meteoritos(centro_cam, num_peligros)
 	elif tipo_peligro == "Enemigo":
 		pass
