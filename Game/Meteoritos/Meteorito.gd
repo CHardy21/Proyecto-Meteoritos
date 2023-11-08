@@ -40,7 +40,7 @@ func crear(pos:Vector2, dir:Vector2,tamanio:float) -> void:
 	hitspoints = hitspoint_base * tamanio
 	
 	# solo debug
-	print("hitspoint: ", hitspoints)
+	#print("hitspoint: ", hitspoints)
 
 ## Setters y Getters
 func set_esta_en_sector(valor:bool) -> void:
@@ -62,7 +62,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 ## Metodos Custom
 func recibir_danio(danio:float) -> void:
 	hitspoints -= danio
-	print("vida restante: ", hitspoints)
+	#print("vida restante: ", hitspoints)
 	if hitspoints <= 0.0:
 		destruir()
 	impacto_sfx.play()
