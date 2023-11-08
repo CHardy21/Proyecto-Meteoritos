@@ -48,3 +48,7 @@ potencia_rotacion = 10
 position = Vector2( 1346.33, 565.685 )
 tipo_de_peligro = "Meteorito"
 numero_peligros = 12
+
+[node name="CamaraNivel" type="Camera2D" parent="."]
+
+[node name="TweenCamara" type="Tween" parent="."]
