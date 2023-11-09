@@ -52,3 +52,4 @@ numero_peligros = 12
 [node name="CamaraNivel" type="Camera2D" parent="."]
 
 [node name="TweenCamara" type="Tween" parent="."]
+[connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

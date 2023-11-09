@@ -14,7 +14,7 @@ onready var contenedor_meteoritos:Node
 onready var contenedor_sector_meteoritos:Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 
-var meteoritos_totales:int
+var meteoritos_totales:int = 0
 
 
 # Metodos
@@ -58,10 +58,11 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int)->void:
 	transicion_camaras(
 		$Player/CamaraPlayer.global_position,
 		$CamaraNivel.global_position,
-		camara_nivel
+		camara_nivel,
+		tiempo_transicion_camara
 	)
 
-func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D) -> void:
+func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, tiempo_transicion_camara:float) -> void:
 	$TweenCamara.interpolate_property(
 		camara_actual,
 		"global_position",
@@ -78,10 +79,12 @@ func controlar_meteoritos_restantes()-> void:
 	meteoritos_totales -= 1
 	print("Numero de meteoritos no destruidos: ", meteoritos_totales)
 	if meteoritos_totales == 0:
+		contenedor_sector_meteoritos.get_child(0).queue_free()
 		transicion_camaras(
 		$CamaraNivel.global_position,
 		$Player/CamaraPlayer.global_position,
-		camara_nivel
+		camara_nivel,
+		tiempo_transicion_camara * 0.10
 		)
 
 
@@ -89,6 +92,10 @@ func controlar_meteoritos_restantes()-> void:
 ## Conectar señales externas
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
+
+func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
+	if object.name == "CamaraPlayer":
+		object.global_position = $Player.global_position
 
 func _on_nave_destruida(posicion:Vector2, numero_explosiones:int) -> void:
 # warning-ignore:unused_variable
@@ -120,3 +127,6 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 		crear_sector_meteoritos(centro_cam, num_peligros)
 	elif tipo_peligro == "Enemigo":
 		pass
+
+
+

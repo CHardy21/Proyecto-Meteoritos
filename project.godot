@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera2D",
+"class": "CamaraPlayer",
+"language": "GDScript",
+"path": "res://Game/Naves/Players/CamaraPlayer.gd"
+}, {
 "base": "Node2D",
 "class": "Canion",
 "language": "GDScript",
@@ -75,6 +80,7 @@ _global_script_classes=[ {
 "path": "res://Game/Meteoritos/SectorMeteoritos.gd"
 } ]
 _global_script_class_icons={
+"CamaraPlayer": "",
 "Canion": "",
 "Escudo": "",
 "Estela": "",
@@ -105,8 +111,8 @@ Eventos="*res://Game/Autoloads/Eventos.gd"
 window/size/width=1920
 window/size/height=1080
 window/size/always_on_top=true
-window/size/test_width=1280
-window/size/test_height=720
+window/size/test_width=889
+window/size/test_height=500
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -153,6 +159,16 @@ key_shield={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+zoom_acercar={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+zoom_alejar={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 
