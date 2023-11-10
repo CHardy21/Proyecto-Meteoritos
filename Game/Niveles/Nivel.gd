@@ -13,6 +13,7 @@ onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos:Node
 onready var contenedor_sector_meteoritos:Node
 onready var camara_nivel:Camera2D = $CamaraNivel
+onready var camara_player:Camera2D = $Player/CamaraPlayer
 
 var meteoritos_totales:int = 0
 
@@ -55,9 +56,13 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int)->void:
 	camara_nivel.global_position = centro_camara
 	camara_nivel.current = true
 	contenedor_sector_meteoritos.add_child(new_sector_meteoritos)
+	
+	camara_nivel.zoom = camara_player.zoom
+	camara_nivel.devolver_zoom_original()
+	
 	transicion_camaras(
-		$Player/CamaraPlayer.global_position,
-		$CamaraNivel.global_position,
+		camara_player.global_position,
+		camara_nivel.global_position,
 		camara_nivel,
 		tiempo_transicion_camara
 	)
@@ -80,9 +85,15 @@ func controlar_meteoritos_restantes()-> void:
 	print("Numero de meteoritos no destruidos: ", meteoritos_totales)
 	if meteoritos_totales == 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
+		
+		camara_player.puede_hacer_zoom(true)
+		var zoom_actual = camara_player.zoom
+		camara_player.zoom = camara_nivel.zoom
+		camara_player.zoom_suavizado(zoom_actual.x, zoom_actual.y, 1.0)
+		
 		transicion_camaras(
-		$CamaraNivel.global_position,
-		$Player/CamaraPlayer.global_position,
+		camara_nivel.global_position,
+		camara_player.global_position,
 		camara_nivel,
 		tiempo_transicion_camara * 0.10
 		)
