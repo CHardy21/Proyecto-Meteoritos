@@ -86,7 +86,7 @@ func controlar_meteoritos_restantes()-> void:
 	if meteoritos_totales == 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		
-		camara_player.puede_hacer_zoom(true)
+		camara_player.set_puede_hacer_zoom(true)
 		var zoom_actual = camara_player.zoom
 		camara_player.zoom = camara_nivel.zoom
 		camara_player.zoom_suavizado(zoom_actual.x, zoom_actual.y, 1.0)
@@ -94,7 +94,7 @@ func controlar_meteoritos_restantes()-> void:
 		transicion_camaras(
 		camara_nivel.global_position,
 		camara_player.global_position,
-		camara_nivel,
+		camara_player,
 		tiempo_transicion_camara * 0.10
 		)
 
