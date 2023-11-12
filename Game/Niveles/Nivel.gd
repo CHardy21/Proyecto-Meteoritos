@@ -104,7 +104,7 @@ func controlar_meteoritos_restantes()-> void:
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
-func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
+func _on_TweenCamara_tween_completed(object: Object, _key: NodePath) -> void:
 	if object.name == "CamaraPlayer":
 		object.global_position = $Player.global_position
 
