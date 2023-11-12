@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Meteorito_meteorBrown_big4.png-11e8310907000036aa00055b6fb6933c.stex"
+path="res://.import/Meteorito_Brown_tiny2.png-390546fc42c3f8560f6c28fce353d174.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Meteoritos/Meteorito_meteorBrown_big4.png"
-dest_files=[ "res://.import/Meteorito_meteorBrown_big4.png-11e8310907000036aa00055b6fb6933c.stex" ]
+source_file="res://Game/Meteoritos/Meteorito_Brown_tiny2.png"
+dest_files=[ "res://.import/Meteorito_Brown_tiny2.png-390546fc42c3f8560f6c28fce353d174.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

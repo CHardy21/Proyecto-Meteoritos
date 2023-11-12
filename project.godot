@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera2D",
+"class": "CamaraGame",
+"language": "GDScript",
+"path": "res://Game/Niveles/CamaraGame.gd"
+}, {
+"base": "CamaraGame",
+"class": "CamaraPlayer",
+"language": "GDScript",
+"path": "res://Game/Naves/Players/CamaraPlayer.gd"
+}, {
 "base": "Node2D",
 "class": "Canion",
 "language": "GDScript",
@@ -23,6 +33,11 @@ _global_script_classes=[ {
 "class": "Estela",
 "language": "GDScript",
 "path": "res://Game/Naves/Players/Trail/Trail2D.gd"
+}, {
+"base": "Node2D",
+"class": "ExplosionMeteorito",
+"language": "GDScript",
+"path": "res://Game/Explosiones/ExplosionMeteorito.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Meteorito",
@@ -58,18 +73,33 @@ _global_script_classes=[ {
 "class": "RayoLaser",
 "language": "GDScript",
 "path": "res://Game/Proyectiles/LaserBeam/LaserBeam2D.gd"
+}, {
+"base": "Area2D",
+"class": "SectorDePeligro",
+"language": "GDScript",
+"path": "res://Game/Peligros/SectorDePeligro.gd"
+}, {
+"base": "Node2D",
+"class": "SectorMeteoritos",
+"language": "GDScript",
+"path": "res://Game/Meteoritos/SectorMeteoritos.gd"
 } ]
 _global_script_class_icons={
+"CamaraGame": "",
+"CamaraPlayer": "",
 "Canion": "",
 "Escudo": "",
 "Estela": "",
+"ExplosionMeteorito": "",
 "Meteorito": "",
 "MeteoritoSpawner": "",
 "Motor": "",
 "Nivel": "",
 "Players": "",
 "Proyectil": "",
-"RayoLaser": ""
+"RayoLaser": "",
+"SectorDePeligro": "",
+"SectorMeteoritos": ""
 }
 
 [application]
@@ -87,8 +117,8 @@ Eventos="*res://Game/Autoloads/Eventos.gd"
 window/size/width=1920
 window/size/height=1080
 window/size/always_on_top=true
-window/size/test_width=1280
-window/size/test_height=720
+window/size/test_width=889
+window/size/test_height=500
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -137,6 +167,16 @@ key_shield={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
  ]
 }
+zoom_acercar={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+zoom_alejar={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -148,6 +188,7 @@ key_shield={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

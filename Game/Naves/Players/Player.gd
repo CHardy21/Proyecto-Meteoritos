@@ -74,6 +74,11 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		controlador_estados(ESTADO.VIVO)
 
+func _on_Player_body_entered(body: Node) -> void:
+	if body is Meteorito:
+		body.destruir()
+		destruir()
+
 ## Metodos Customs
 func player_input() -> void:
 		## Chequea los estados
@@ -84,11 +89,17 @@ func player_input() -> void:
 		empuje = Vector2(potencia_motor, 0)
 	elif Input.is_action_pressed("key_abajo"):
 		empuje = Vector2(-potencia_motor, 0)
-		
+	
 	if Input.is_action_pressed("key_derecha"):
 		dir_rotacion += 1
 	elif Input.is_action_pressed("key_izquierda"):
 		dir_rotacion -= 1
+
+	# al soltar las teclas, detengo el avance,retroceso y/o rotacion de la nave
+	if Input.is_action_just_released("key_arriba") or Input.is_action_just_released("key_abajo"):
+		empuje = Vector2(0,0)
+	if Input.is_action_just_released("key_izquierda") or Input.is_action_just_released("key_derecha"):
+		dir_rotacion = 0
 	
 	if Input.is_action_pressed("key_shoot"):
 		canion.set_esta_disparando(true)
@@ -124,8 +135,9 @@ func destruir() -> void:
 
 func recibir_danio(danio:float) -> void:
 	hitspoint -= danio
-	print("vida restante player: ", hitspoint)
+	# print("vida restante player: ", hitspoint)
 	if hitspoint <= 0.0:
 		destruir()
 		
 	impacto_sfx.play()
+
