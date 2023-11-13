@@ -74,24 +74,33 @@ func cast_beam(delta: float) -> void:
 		print("SIN ENERGIA")
 		set_is_casting(false)
 		return
-	energia += radio_desgaste * delta
+		
+	controlar_energia(radio_desgaste * delta)
 	
 	var cast_point := cast_to
 
 	force_raycast_update()
 	collision_particles.emitting = is_colliding()
-
+	
 	if is_colliding():
 		cast_point = to_local(get_collision_point())
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = cast_point
-		
 		if get_collider().has_method("recibir_danio"):
 			get_collider().recibir_danio(radio_danio * delta)
+		
+		fill.points[1] = cast_point
+		beam_particles.position = cast_point * 0.5
+		beam_particles.process_material.emission_box_extends.x = cast_point.length() * 0.5
 
-	fill.points[1] = cast_point
-	beam_particles.position = cast_point * 0.5
-	beam_particles.process_material.emission_box_extents.x = cast_point.length() * 0.5
+
+
+func controlar_energia(consumo:float) -> void:
+	energia += consumo
+	# Solo DEBUG, quitar luego
+	print("Energia Laser: ", energia)
+	
+
 
 
 func appear() -> void:
