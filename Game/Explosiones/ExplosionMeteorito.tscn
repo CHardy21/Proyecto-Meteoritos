@@ -465,7 +465,6 @@ tracks/18/keys = {
 script = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "explosion"
 anims/default = SubResource( 1 )
 anims/explosion = SubResource( 2 )
 
@@ -475,37 +474,20 @@ max_distance = 1820.0
 bus = "SFX"
 
 [node name="Meteorito_Brown_small1" type="Sprite" parent="."]
-position = Vector2( 140, -80 )
-rotation = 2.87979
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
 
 [node name="Meteorito_Brown_small2" type="Sprite" parent="."]
-position = Vector2( -30, -120 )
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
 
 [node name="Meteorito_Brown_med1" type="Sprite" parent="."]
-position = Vector2( 85, 50 )
-rotation = 2.18166
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
 
 [node name="Meteorito_Brown_med3" type="Sprite" parent="."]
-position = Vector2( -85, -5 )
-rotation = -2.44346
-scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="Meteorito_Brown_tiny1" type="Sprite" parent="."]
-position = Vector2( -90, 105 )
-rotation = 3.49066
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 6 )
 
 [node name="Meteorito_Brown_tiny2" type="Sprite" parent="."]
-position = Vector2( 91.2647, -145.687 )
-rotation = -3.22886
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 7 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
