@@ -1,3 +1,4 @@
+#LaserBeam2D.gd
 class_name RayoLaser
 
 # Casts a laser along a raycast, emitting particles on the impact point.
@@ -16,12 +17,12 @@ export var radio_danio:float = 4.0
 export var energia:float = 4.0
 export var radio_desgaste:float = -1.0
 
+var energia_original:float
 
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
 # See `appear()` and `disappear()` for more information.
 var is_casting := false setget set_is_casting
-
 
 
 onready var fill := $FillLine2D
@@ -30,19 +31,19 @@ onready var casting_particles := $CastingParticles2D
 onready var collision_particles := $CollisionParticles2D
 onready var beam_particles := $BeamParticles2D
 
+
 onready var line_width: float = fill.width
 onready var laser_sfx : AudioStreamPlayer2D = $LaserSFX
 
 func _ready() -> void:
+	energia_original = energia
 	set_physics_process(false)
 	fill.points[1] = Vector2.ZERO
-
 
 func _physics_process(delta: float) -> void:
 	#cast_to = (cast_to + Vector2.RIGHT * cast_speed * delta).limit_length(max_length)
 	cast_to = (cast_to + Vector2.RIGHT * cast_speed * delta)
 	cast_beam(delta)
-
 
 func set_is_casting(cast: bool) -> void:
 	is_casting = cast
@@ -64,11 +65,9 @@ func set_is_casting(cast: bool) -> void:
 	beam_particles.emitting = is_casting
 	casting_particles.emitting = is_casting
 
-
 # Controls the emission of particles and extends the Line2D to `cast_to` or the ray's 
 # collision point, whichever is closest.
 func cast_beam(delta: float) -> void:
-	
 	if energia <= 0:
 		# solo para debug
 		print("SIN ENERGIA")
@@ -81,27 +80,18 @@ func cast_beam(delta: float) -> void:
 
 	force_raycast_update()
 	collision_particles.emitting = is_colliding()
-	
+
 	if is_colliding():
 		cast_point = to_local(get_collision_point())
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = cast_point
+		
 		if get_collider().has_method("recibir_danio"):
 			get_collider().recibir_danio(radio_danio * delta)
-		
-		fill.points[1] = cast_point
-		beam_particles.position = cast_point * 0.5
-		beam_particles.process_material.emission_box_extends.x = cast_point.length() * 0.5
 
-
-
-func controlar_energia(consumo:float) -> void:
-	energia += consumo
-	# Solo DEBUG, quitar luego
-	print("Energia Laser: ", energia)
-	
-
-
+	fill.points[1] = cast_point
+	beam_particles.position = cast_point * 0.5
+	beam_particles.process_material.emission_box_extents.x = cast_point.length() * 0.5
 
 func appear() -> void:
 	if tween.is_active():
@@ -109,9 +99,16 @@ func appear() -> void:
 	tween.interpolate_property(fill, "width", 0, line_width, growth_time * 2)
 	tween.start()
 
-
 func disappear() -> void:
 	if tween.is_active():
 		tween.stop_all()
 	tween.interpolate_property(fill, "width", fill.width, 0, growth_time)
 	tween.start()
+
+
+func controlar_energia(consumo:float) -> void:
+	energia += consumo
+	if energia >= energia_original:
+		energia = energia_original
+	# Solo DEBUG, quitar luego
+	print("Energia Laser: ", energia)

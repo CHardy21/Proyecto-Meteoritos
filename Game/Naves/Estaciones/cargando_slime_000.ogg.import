@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cargando_slime_000.ogg-6c0e7738510050fed7683a4f31bacdb5.oggstr"
+
+[deps]
+
+source_file="res://Game/Naves/Estaciones/cargando_slime_000.ogg"
+dest_files=[ "res://.import/cargando_slime_000.ogg-6c0e7738510050fed7683a4f31bacdb5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
