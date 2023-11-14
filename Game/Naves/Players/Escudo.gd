@@ -5,25 +5,35 @@ extends Area2D
 export var energia: float = 8.0
 export var radio_desgaste: float = -1.6
 
-## Atributos
+## Atributos/Variables
 var esta_activado:bool = false setget ,get_esta_activado
+var energia_original:float
 
 ## Metodos
 func _ready() -> void:
+	energia_original = energia
 	set_process(false)  ## Se impide que se procese la funct _process() al iniciar
 	controlar_colisionador(true)
 
 func _process(delta: float) -> void:
-	energia += radio_desgaste * delta
-	
-	if energia <= 0:
-		desactivar()
-
+	controlar_energia(radio_desgaste * delta)
 
 ## Metodos Custom
 func controlar_colisionador(esta_desctivado:bool)-> void:
 	$CollisionShape2D.set_deferred("disabled", esta_desctivado)
 
+func controlar_energia(consumo:float) -> void:
+	energia += consumo
+	# Solo DEBUG, quitar luego
+	print("Energia Escudo: ", energia)
+	
+	# Limitamos la recarga de energia hasta la energia original
+	if energia >= energia_original:
+		energia = energia_original
+	elif energia <= 0.0:
+		desactivar()
+	
+	
 func activar() -> void:
 	if energia <= 0.0:
 		return
