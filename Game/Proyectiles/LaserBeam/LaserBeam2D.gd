@@ -112,3 +112,4 @@ func controlar_energia(consumo:float) -> void:
 		energia = energia_original
 	# Solo DEBUG, quitar luego
 	print("Energia Laser: ", energia)
+

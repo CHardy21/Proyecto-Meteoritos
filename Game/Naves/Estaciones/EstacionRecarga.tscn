@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game/Naves/Estaciones/Recarga_dotWhite.png" type="Texture" id=1]
 [ext_resource path="res://Game/Naves/Estaciones/Recarga_spaceStation_021.png" type="Texture" id=2]
 [ext_resource path="res://Game/Naves/Estaciones/EstacionRecarga.gd" type="Script" id=3]
+[ext_resource path="res://Game/Naves/Estaciones/EstacionVacia.wav" type="AudioStream" id=4]
+[ext_resource path="res://Game/Naves/Estaciones/cargando_slime_000.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 67.7208
@@ -116,8 +118,12 @@ anims/default = SubResource( 3 )
 anims/girando = SubResource( 4 )
 
 [node name="CargaSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "SFX"
 
 [node name="VacioSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="body_entered" from="AreaRecarga" to="." method="_on_AreaRecarga_body_entered"]
 [connection signal="body_exited" from="AreaRecarga" to="." method="_on_AreaRecarga_body_exited"]
