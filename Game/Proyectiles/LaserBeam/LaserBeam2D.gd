@@ -1,4 +1,4 @@
-# LaserBeam2D.gd
+#LaserBeam2D.gd
 class_name RayoLaser
 
 # Casts a laser along a raycast, emitting particles on the impact point.
@@ -24,6 +24,7 @@ var energia_original:float
 # See `appear()` and `disappear()` for more information.
 var is_casting := false setget set_is_casting
 
+
 onready var fill := $FillLine2D
 onready var tween := $Tween
 onready var casting_particles := $CastingParticles2D
@@ -34,8 +35,6 @@ onready var beam_particles := $BeamParticles2D
 onready var line_width: float = fill.width
 onready var laser_sfx : AudioStreamPlayer2D = $LaserSFX
 
-
-# Metodos
 func _ready() -> void:
 	energia_original = energia
 	set_physics_process(false)
@@ -61,7 +60,7 @@ func set_is_casting(cast: bool) -> void:
 		
 		collision_particles.emitting = false
 		disappear()
-	
+
 	set_physics_process(is_casting)
 	beam_particles.emitting = is_casting
 	casting_particles.emitting = is_casting
@@ -90,11 +89,9 @@ func cast_beam(delta: float) -> void:
 		if get_collider().has_method("recibir_danio"):
 			get_collider().recibir_danio(radio_danio * delta)
 
-		
-		fill.points[1] = cast_point
-		beam_particles.position = cast_point * 0.5
-		beam_particles.process_material.emission_box_extends.x = cast_point.length() * 0.5
-
+	fill.points[1] = cast_point
+	beam_particles.position = cast_point * 0.5
+	beam_particles.process_material.emission_box_extents.x = cast_point.length() * 0.5
 
 func appear() -> void:
 	if tween.is_active():
