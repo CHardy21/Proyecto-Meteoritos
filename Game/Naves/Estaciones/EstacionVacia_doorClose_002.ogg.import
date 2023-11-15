@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/EstacionVacia_doorClose_002.ogg-47a3f816210fc386c2e6ec4888e53423.oggstr"
+
+[deps]
+
+source_file="res://Game/Naves/Estaciones/EstacionVacia_doorClose_002.ogg"
+dest_files=[ "res://.import/EstacionVacia_doorClose_002.ogg-47a3f816210fc386c2e6ec4888e53423.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
