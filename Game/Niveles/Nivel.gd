@@ -98,7 +98,12 @@ func controlar_meteoritos_restantes()-> void:
 		tiempo_transicion_camara * 0.10
 		)
 
-
+func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> Vector2:
+	randomize()
+	var rand_x = rand_range(-rango_horizontal, rango_horizontal)
+	var rand_y = rand_range(-rango_vertical, rango_vertical)
+	
+	return Vector2(rand_x, rand_y)
 
 ## Conectar señales externas
 func _on_disparo(proyectil:Proyectil) -> void:
@@ -108,11 +113,19 @@ func _on_TweenCamara_tween_completed(object: Object, _key: NodePath) -> void:
 	if object.name == "CamaraPlayer":
 		object.global_position = $Player.global_position
 
-func _on_nave_destruida(posicion:Vector2, numero_explosiones:int) -> void:
+func _on_nave_destruida(nave:Players, posicion:Vector2, numero_explosiones:int) -> void:
+	if nave is Players:
+		transicion_camaras(
+			posicion,
+			posicion + crear_posicion_aleatoria(-200, 200),
+			camara_nivel,
+			tiempo_transicion_camara
+		)
+		
 # warning-ignore:unused_variable
 	for i in range(numero_explosiones):
 		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = posicion
+		new_explosion.global_position = posicion + crear_posicion_aleatoria(-100.0, 50.0)
 		add_child(new_explosion)
 		yield(get_tree().create_timer(0.6),"timeout")
 	

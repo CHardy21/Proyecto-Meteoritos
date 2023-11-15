@@ -27,15 +27,77 @@ scale = Vector2( 2.18921, 2.09011 )
 texture = ExtResource( 11 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 2048, 2048 )
+motion_mirroring = Vector2( 256, 256 )
+
+[node name="bg_purple" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 9 )
+
+[node name="bg_purple2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 500, 0 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1000, 0 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1500, 0 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2000, 0 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple6" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, 500 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple7" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 500, 500 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1000, 500 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple9" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1500, 500 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple10" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2000, 500 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple11" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, 1000 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple12" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 500, 1000 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple13" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1000, 1000 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple14" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1500, 1000 )
+texture = ExtResource( 9 )
+
+[node name="bg_purple15" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2000, 1000 )
+texture = ExtResource( 9 )
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-margin_right = 2048.0
-margin_bottom = 2048.0
+visible = false
+margin_right = 2024.0
+margin_bottom = 1200.0
 texture = ExtResource( 9 )
 expand = true
+stretch_mode = 7
 flip_h = true
 flip_v = true
 __meta__ = {
@@ -58,6 +120,11 @@ position = Vector2( 1346.33, 565.685 )
 tipo_de_peligro = "Meteorito"
 numero_peligros = 5
 
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
+position = Vector2( 748.355, 1115.41 )
+
 [node name="CamaraNivel" type="Camera2D" parent="."]
 script = ExtResource( 10 )
 
@@ -65,9 +132,4 @@ script = ExtResource( 10 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 
-[node name="EstacionRecarga" parent="." instance=ExtResource( 12 )]
-position = Vector2( 748.355, 1115.41 )
-
-[node name="EnemyDummy" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1311.4, 327.85 )
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
