@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Game/Naves/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Niveles/Nivel.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Game/Niveles/CamaraGame.gd" type="Script" id=10]
 [ext_resource path="res://icon.png" type="Texture" id=11]
 [ext_resource path="res://Game/Naves/Estaciones/EstacionRecarga.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Game/Naves/Enemys/EnemyInterceptor.tscn" type="PackedScene" id=13]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -116,7 +117,7 @@ numero_peligros = 5
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
-position = Vector2( 748.355, 1115.41 )
+position = Vector2( 400.748, 1481 )
 
 [node name="CamaraNivel" type="Camera2D" parent="."]
 script = ExtResource( 10 )
@@ -128,4 +129,7 @@ script = ExtResource( 10 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 946.93, 545.384 )
 potencia_motor = 150
+
+[node name="EnemyInterceptor" parent="." instance=ExtResource( 13 )]
+position = Vector2( 934.943, 779.12 )
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

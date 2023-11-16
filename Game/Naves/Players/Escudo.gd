@@ -25,7 +25,7 @@ func controlar_colisionador(esta_desctivado:bool)-> void:
 func controlar_energia(consumo:float) -> void:
 	energia += consumo
 	# Solo DEBUG, quitar luego
-	print("Energia Escudo: ", energia)
+	#print("Energia Escudo: ", energia)
 	
 	# Limitamos la recarga de energia hasta la energia original
 	if energia >= energia_original:
@@ -54,6 +54,11 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "activando" and esta_activado:
 		$AnimationPlayer.play("activado")
 		set_process(true) ## Activamos la func _process()
+		print("Se activo escudo")
+		
+	if anim_name == "activando" and not esta_activado:
+		$AnimationPlayer.stop()
+		print("Se Desactivo escudo")
 
 func _on_body_entered(body: Node) -> void:
 	body.queue_free()
