@@ -7,6 +7,7 @@ enum ESTADO{ SPAWN, VIVO, INVENCIBLE, MUERTO }
 
 ## Atributos export
 export var hitspoint:float = 20.0
+export var num_explosiones:int = 3
 
 ## Atributos
 var estado_actual: int = ESTADO.SPAWN
@@ -30,7 +31,7 @@ func controlador_estados(nuevo_estado:int) -> void:
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disabled",true)
 			canion.set_puede_disparar(false)
-			Eventos.emit_signal("nave_destruida", self, global_position, 3)
+			Eventos.emit_signal("nave_destruida", self, global_position, num_explosiones)
 			queue_free()
 		_:
 			printerr("ERROR de Estado...")
@@ -52,7 +53,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		controlador_estados(ESTADO.VIVO)
 
-func _on_Player_body_entered(body: Node) -> void:
+func _on_body_entered(body: Node) -> void:
 	if body is Meteorito:
 		body.destruir()
 		destruir()

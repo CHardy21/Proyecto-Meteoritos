@@ -133,3 +133,5 @@ potencia_motor = 150
 [node name="EnemyInterceptor" parent="." instance=ExtResource( 13 )]
 position = Vector2( 934.943, 779.12 )
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
+[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+[connection signal="body_entered" from="EnemyInterceptor" to="EnemyInterceptor" method="_on_Player_body_entered"]
