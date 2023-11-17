@@ -135,6 +135,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Eventos="*res://Game/Autoloads/Eventos.gd"
+DatosGame="*res://Game/Autoloads/DatosGame.gd"
 
 [display]
 
