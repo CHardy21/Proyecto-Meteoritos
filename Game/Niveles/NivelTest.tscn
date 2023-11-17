@@ -12,7 +12,7 @@
 [ext_resource path="res://Game/Niveles/CamaraGame.gd" type="Script" id=10]
 [ext_resource path="res://icon.png" type="Texture" id=11]
 [ext_resource path="res://Game/Naves/Estaciones/EstacionRecarga.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Game/Naves/Enemys/EnemyDummy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Game/Naves/Enemys/EnemyInterceptor.tscn" type="PackedScene" id=13]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -22,7 +22,7 @@ explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 6 )
 
 [node name="icon" type="Sprite" parent="."]
-position = Vector2( 1013.09, 531.424 )
+position = Vector2( 1618.41, 273.715 )
 scale = Vector2( 2.18921, 2.09011 )
 texture = ExtResource( 11 )
 
@@ -107,23 +107,17 @@ __meta__ = {
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 598.576, 563.311 )
-mass = 5.0
-potencia_motor = 25
-potencia_rotacion = 10
-
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 5 )]
-position = Vector2( 1346.33, 565.685 )
+position = Vector2( 1759.86, 272.017 )
 tipo_de_peligro = "Meteorito"
 numero_peligros = 5
 
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
-position = Vector2( 748.355, 1115.41 )
+position = Vector2( 400.748, 1481 )
 
 [node name="CamaraNivel" type="Camera2D" parent="."]
 script = ExtResource( 10 )
@@ -132,4 +126,12 @@ script = ExtResource( 10 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 946.93, 545.384 )
+potencia_motor = 150
+
+[node name="EnemyInterceptor" parent="." instance=ExtResource( 13 )]
+position = Vector2( 934.943, 779.12 )
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
+[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+[connection signal="body_entered" from="EnemyInterceptor" to="EnemyInterceptor" method="_on_Player_body_entered"]

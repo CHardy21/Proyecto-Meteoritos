@@ -67,6 +67,7 @@ func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int)->void:
 		tiempo_transicion_camara
 	)
 
+# warning-ignore:shadowed_variable
 func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, tiempo_transicion_camara:float) -> void:
 	$TweenCamara.interpolate_property(
 		camara_actual,
