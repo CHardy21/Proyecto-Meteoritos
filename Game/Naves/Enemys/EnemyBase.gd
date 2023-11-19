@@ -10,7 +10,7 @@ func _ready() -> void:
 	player_objetivo = DatosGame.get_player_actual()
 	Eventos.connect("nave_destruida",self,"_on_nave_destruida")
 	# Temporal
-	canion.set_esta_disparando(true)
+	#canion.set_esta_disparando(true)
 
 func _physics_process(delta: float) -> void:
 	rotar_hacia_player()
