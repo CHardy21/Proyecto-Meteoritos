@@ -7,6 +7,7 @@
 [ext_resource path="res://Game/Proyectiles/ProyectilEnemy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
@@ -128,10 +129,10 @@ tracks/5/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 603.464
+radius = 603.052
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 452.636
+radius = 491.018
 
 [node name="EnemyInterceptor" instance=ExtResource( 1 )]
 collision_layer = 2
