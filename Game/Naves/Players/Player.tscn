@@ -44,6 +44,7 @@ position = Vector2( 0, 30 )
 position = Vector2( 42, 0 )
 
 [node name="Escudo" parent="." index="4" instance=ExtResource( 9 )]
+energia = 800.0
 
 [node name="PositionEstela" parent="." index="5" instance=ExtResource( 4 )]
 position = Vector2( -15, 0 )

@@ -20,9 +20,16 @@ explosion = ExtResource( 4 )
 meteorito = ExtResource( 7 )
 explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 6 )
+enemigo_interceptor = ExtResource( 13 )
 
 [node name="icon" type="Sprite" parent="."]
 position = Vector2( 1618.41, 273.715 )
+scale = Vector2( 2.18921, 2.09011 )
+texture = ExtResource( 11 )
+
+[node name="icon2" type="Sprite" parent="."]
+modulate = Color( 0.909804, 0.517647, 0.168627, 1 )
+position = Vector2( 204.196, 207.46 )
 scale = Vector2( 2.18921, 2.09011 )
 texture = ExtResource( 11 )
 
@@ -130,8 +137,11 @@ script = ExtResource( 10 )
 position = Vector2( 946.93, 545.384 )
 potencia_motor = 150
 
-[node name="EnemyInterceptor" parent="." instance=ExtResource( 13 )]
-position = Vector2( 934.943, 779.12 )
+[node name="TriggersInterceptores" type="Node" parent="."]
+
+[node name="SectorDePeligro" parent="TriggersInterceptores" instance=ExtResource( 5 )]
+position = Vector2( 192.333, 214.96 )
+tipo_de_peligro = "Enemigo"
+numero_peligros = 2
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
-[connection signal="body_entered" from="EnemyInterceptor" to="EnemyInterceptor" method="_on_Player_body_entered"]

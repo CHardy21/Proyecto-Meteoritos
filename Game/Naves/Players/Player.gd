@@ -57,6 +57,7 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
 	apply_torque_impulse(dir_rotacion * potencia_rotacion)
 
 func _ready() -> void:
+	DatosGame.set_player_actual(self)
 	laser.set_is_casting(false)
 	controlador_estados(estado_actual)
 	## TODO: quitar, solo DEBUG
