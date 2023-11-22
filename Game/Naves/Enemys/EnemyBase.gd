@@ -10,9 +10,9 @@ var dir_player:Vector2
 # Metodos
 func _ready() -> void:
 	player_objetivo = DatosGame.get_player_actual()
+# warning-ignore:return_value_discarded
 	Eventos.connect("nave_destruida",self,"_on_nave_destruida")
-	# Temporal
-	#canion.set_esta_disparando(true)
+
 
 func _physics_process(_delta: float) -> void:
 	rotar_hacia_player()
