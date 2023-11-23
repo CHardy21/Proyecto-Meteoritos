@@ -226,6 +226,7 @@ key_recarga_escudo={
 2d_physics/layer_3="meteorites"
 2d_physics/layer_4="proyectil_players"
 2d_physics/layer_5="Proyectil_enemys"
+2d_physics/layer_6="base_enemy"
 
 [rendering]
 

@@ -39,6 +39,8 @@ func conectar_signals() -> void:
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 	# warning-ignore:return_value_discarded
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro")
+# warning-ignore:return_value_discarded
+	Eventos.connect("base_destruida",self,"_on_base_destruida")
 
 func crear_contenedores() -> void:
 	contenedor_proyectiles = Node.new()
@@ -123,6 +125,19 @@ func crear_posicion_aleatoria(rango_horizontal:float, rango_vertical:float) -> V
 	
 	return Vector2(rand_x, rand_y)
 
+func crear_explosiones(
+	posicion:Vector2,
+	numero_explosiones:int = 1,
+	intervalo:float = 0.0,
+	rangos_aleatorios:Vector2 = Vector2(0,0)
+	)-> void:
+	# warning-ignore:unused_variable
+		for i in range(numero_explosiones):
+			var new_explosion:Node2D = explosion.instance()
+			new_explosion.global_position = posicion + crear_posicion_aleatoria(rangos_aleatorios.x, rangos_aleatorios.y)
+			add_child(new_explosion)
+			yield(get_tree().create_timer(intervalo),"timeout")
+	
 ## Conectar señales externas
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
@@ -139,13 +154,9 @@ func _on_nave_destruida(nave:Players, posicion:Vector2, numero_explosiones:int) 
 			camara_nivel,
 			tiempo_transicion_camara
 		)
-# warning-ignore:unused_variable
-	for i in range(numero_explosiones):
-		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = posicion + crear_posicion_aleatoria(-100.0, 50.0)
-		add_child(new_explosion)
-		yield(get_tree().create_timer(0.6),"timeout")
-	
+	crear_explosiones(posicion, numero_explosiones, 0.6, Vector2(100.0, 50.0))
+
+
 func _on_spawn_meteoritos(pos_spawn:Vector2, dir_meteorito:Vector2, tamanio:float) -> void:
 	var new_meteorito:Meteorito = meteorito.instance()
 	new_meteorito.crear(
@@ -169,5 +180,8 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
 
-
+func _on_base_destruida(pos_partes:Array)->void:
+	for posicion in pos_partes:
+		crear_explosiones(posicion)
+		yield(get_tree().create_timer(0.5),"timeout")
 
