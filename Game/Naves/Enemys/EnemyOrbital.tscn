@@ -91,12 +91,14 @@ tracks/2/keys = {
 }
 
 [node name="EnemyOrbital" instance=ExtResource( 1 )]
+position = Vector2( 0, 2 )
 collision_layer = 2
 collision_mask = 13
 contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 4 )
-rango_max_ataque = 800.0
+hitspoint = 15.0
+rango_max_ataque = 1000.0
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 1, 1, 1, 0.156863 )
