@@ -12,6 +12,7 @@ func get_player_actual() -> Players:
 	return player_actual
 
 func _ready()-> void:
+# warning-ignore:return_value_discarded
 	Eventos.connect("nave_destruida",self,"_on_nave_destruida")
 
 func _on_nave_destruida(nave:NaveBase, _posicion, _explosiones) -> void:

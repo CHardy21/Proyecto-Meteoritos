@@ -41,6 +41,10 @@ func conectar_signals() -> void:
 	Eventos.connect("nave_en_sector_peligro", self, "_on_nave_en_sector_peligro")
 # warning-ignore:return_value_discarded
 	Eventos.connect("base_destruida",self,"_on_base_destruida")
+	# warning-ignore:return_value_discarded
+	Eventos.connect("spawn_orbital",self,"_on_spawn_orbital")
+
+
 
 func crear_contenedores() -> void:
 	contenedor_proyectiles = Node.new()
@@ -184,4 +188,7 @@ func _on_base_destruida(pos_partes:Array)->void:
 	for posicion in pos_partes:
 		crear_explosiones(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")
+
+func _on_spawn_orbital(enemigo:EnemyOrbital)->void:
+	contenedor_enemigos.add_child(enemigo)
 

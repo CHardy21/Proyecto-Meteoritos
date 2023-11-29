@@ -4,6 +4,8 @@ extends Node2D
 
 # Atributos export
 export var hitspoints:float = 30.0
+export var orbital:PackedScene = null
+
 
 # Atributos onready
 onready var impacto_sfx:AudioStreamPlayer2D =  $ImpactosSFX
@@ -42,9 +44,24 @@ func destruir()->void:
 	Eventos.emit_signal("base_destruida",posicion_partes)
 	queue_free()
 
+func spawnear_orbital()->void:
+	pass
 
+
+
+# Señales
 func _on_AreaColision_body_entered(body: Node) -> void:
 	if body.has_method("destruir"):
 		body.destruir()
 
+
+func _on_VisibilityNotifier2D_screen_entered() -> void:
+	#Spawn Orbital
+	$VisibilityNotifier2D.queue_free()
 	
+	var new_orbital:EnemyOrbital = orbital.instance()
+	new_orbital.crear(
+		$PosicionesSpawn/Norte.global_position,
+		self
+		)
+	Eventos.emit_signal("spawn_orbital",new_orbital)
