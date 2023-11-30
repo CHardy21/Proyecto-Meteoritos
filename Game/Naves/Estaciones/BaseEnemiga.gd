@@ -17,7 +17,18 @@ var esta_destruida:bool = false
 # Metodos
 func _ready() -> void:
 	$AnimationPlayer.play(elegir_animacion_aleatoria())
-	
+
+### Temporal
+#func _process(delta: float) -> void:
+#	var player_objetivo:Players = DatosGame.get_player_actual()
+#	if not player_objetivo:
+#		return
+#	var dir_player:Vector2 = player_objetivo.global_position - global_position
+#	var angulo_player:float = rad2deg(dir_player.angle())
+#	print(angulo_player)
+### END Temporal 
+
+
 # Metodos Custom
 func elegir_animacion_aleatoria() -> String:
 	randomize()
@@ -41,27 +52,53 @@ func destruir()->void:
 		$Sprites/Sprite3.global_position,
 		$Sprites/Sprite4.global_position
 	]
-	Eventos.emit_signal("base_destruida",posicion_partes)
+	Eventos.emit_signal("base_destruida", self, posicion_partes)
 	queue_free()
 
 func spawnear_orbital()->void:
-	pass
+	var pos_spawn:Vector2 = detectar_cuadrante()
+	var new_orbital:EnemyOrbital = orbital.instance()
+	new_orbital.crear(
+		global_position + pos_spawn,
+		self
+		)
+	Eventos.emit_signal("spawn_orbital", new_orbital)
 
 
+func detectar_cuadrante() -> Vector2:
+	var player_objetivo:Players = DatosGame.get_player_actual()
 
-# Señales
+	if not player_objetivo:
+		return Vector2.ZERO
+
+	var dir_player:Vector2 = player_objetivo.global_position - global_position
+	var angulo_player:float = rad2deg(dir_player.angle())
+
+	if abs(angulo_player) <= 45.0:
+		# Player ingresa por la derecha
+		return $PosicionesSpawn/Este.position
+	elif abs(angulo_player) > 135.0:
+		# Player ingresa po la izquierda
+		return $PosicionesSpawn/Oeste.position
+	elif abs(angulo_player) > 45.0 and abs(angulo_player) <= 135.0:
+		# player ingresa o por arriba o por abajo
+		if sign(angulo_player) > 0:
+			# Player ingresa por abajo
+			return $PosicionesSpawn/Sur.position
+		else:
+			# Player ingresa por arriba
+			return $PosicionesSpawn/Norte.position
+	# por defecto se spawnea desde el norte
+	return $PosicionesSpawn/Norte.position
+
+
+# Señales Internas
 func _on_AreaColision_body_entered(body: Node) -> void:
 	if body.has_method("destruir"):
 		body.destruir()
 
-
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	#Spawn Orbital
 	$VisibilityNotifier2D.queue_free()
-	
-	var new_orbital:EnemyOrbital = orbital.instance()
-	new_orbital.crear(
-		$PosicionesSpawn/Norte.global_position,
-		self
-		)
-	Eventos.emit_signal("spawn_orbital",new_orbital)
+	spawnear_orbital()
+

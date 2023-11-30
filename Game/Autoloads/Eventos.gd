@@ -11,6 +11,6 @@ signal nave_en_sector_peligro(centro_camara, tipo_peligro, num_peligro)
 # warning-ignore:unused_signal
 signal nave_destruida(nave, posicion, explosiones)
 # warning-ignore:unused_signal
-signal base_destruida(posiciones)
+signal base_destruida(base, posiciones)
 # warning-ignore:unused_signal
 signal spawn_orbital(orbital)
