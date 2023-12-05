@@ -1,5 +1,9 @@
+#Eventos.gd
 extends Node
 
+# warning-ignore:unused_signal
+signal nivel_iniciado()
+signal nivel_terminado()
 # warning-ignore:unused_signal
 signal disparo(proyectil)
 # warning-ignore:unused_signal

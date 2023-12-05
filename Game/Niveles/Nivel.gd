@@ -26,6 +26,7 @@ func _ready() -> void:
 	player = DatosGame.get_player_actual()
 	conectar_signals()
 	crear_contenedores()
+	Eventos.emit_signal("nivel_iniciado")
 
 ## Metedos Customs
 func conectar_signals() -> void:
@@ -158,6 +159,7 @@ func _on_nave_destruida(nave:Players, posicion:Vector2, numero_explosiones:int) 
 			camara_nivel,
 			tiempo_transicion_camara
 		)
+		$RestartTimer.start()
 	crear_explosiones(posicion, numero_explosiones, 0.6, Vector2(100.0, 50.0))
 
 
@@ -191,4 +193,12 @@ func _on_base_destruida(_base:Node2D, pos_partes:Array)->void:
 
 func _on_spawn_orbital(enemigo:EnemyOrbital)->void:
 	contenedor_enemigos.add_child(enemigo)
+
+# Señales Internas
+
+
+func _on_RestartTimer_timeout() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().reload_current_scene()
 
