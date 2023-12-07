@@ -4,6 +4,7 @@ extends Node
 # warning-ignore:unused_signal
 signal nivel_iniciado()
 signal nivel_terminado()
+signal detecto_zona_recarga(entrando)
 # warning-ignore:unused_signal
 signal disparo(proyectil)
 # warning-ignore:unused_signal

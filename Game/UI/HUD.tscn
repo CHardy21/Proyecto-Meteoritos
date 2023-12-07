@@ -26,7 +26,7 @@ tracks/0/keys = {
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
 
-[node name="ContenedorInformacion" parent="." instance=ExtResource( 3 )]
+[node name="InfoZonaRecarga" parent="." instance=ExtResource( 3 )]
 
 [node name="FadeCanvas" type="CanvasLayer" parent="."]
 
