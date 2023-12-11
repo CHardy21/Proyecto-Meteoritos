@@ -23,6 +23,7 @@ meteorito = ExtResource( 7 )
 explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 6 )
 enemigo_interceptor = ExtResource( 13 )
+tiempo_limite = 100
 
 [node name="HUD" parent="." instance=ExtResource( 12 )]
 
@@ -133,7 +134,7 @@ position = Vector2( -234.081, 1306.32 )
 [node name="ContenedorBasesEnemigas" type="Node" parent="."]
 
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" instance=ExtResource( 14 )]
-position = Vector2( 2248.63, 1252.42 )
+position = Vector2( 2233.53, 1629.97 )
 
 [node name="TriggersInterceptores" type="Node" parent="."]
 
@@ -151,11 +152,14 @@ script = ExtResource( 10 )
 
 [node name="RestartTimer" type="Timer" parent="."]
 
+[node name="ActualizadorTimer" type="Timer" parent="."]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 946.93, 545.384 )
 potencia_motor = 150
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
+[connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
 
 [editable path="ContenedorBasesEnemigas/BaseEnemiga"]

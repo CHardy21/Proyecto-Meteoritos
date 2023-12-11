@@ -26,6 +26,7 @@ func crear(pos:Vector2, duenia:Node2D, ruta_duenia:Path2D):
 # Metodos
 func _ready() -> void:
 	$AnimationPlayer.play("spawn")
+# warning-ignore:return_value_discarded
 	Eventos.connect("base_destruida", self, "_on_base_destruida")
 	#Temporal
 	#canion.set_esta_disparando(true)

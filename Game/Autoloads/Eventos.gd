@@ -3,7 +3,11 @@ extends Node
 
 # warning-ignore:unused_signal
 signal nivel_iniciado()
+# warning-ignore:unused_signal
 signal nivel_terminado()
+signal cambio_numero_meteoritos(numero)
+signal actualizar_tiempo(tiempo_restante)
+# warning-ignore:unused_signal
 signal detecto_zona_recarga(entrando)
 # warning-ignore:unused_signal
 signal disparo(proyectil)

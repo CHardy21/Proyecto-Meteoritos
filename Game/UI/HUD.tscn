@@ -28,6 +28,41 @@ script = ExtResource( 2 )
 
 [node name="InfoZonaRecarga" parent="." instance=ExtResource( 3 )]
 
+[node name="InfoMeteoritos" parent="." instance=ExtResource( 3 )]
+margin_left = 2.74414
+margin_top = 922.044
+margin_right = 409.744
+margin_bottom = 1076.04
+auto_ocultar = true
+
+[node name="Label" parent="InfoMeteoritos" index="1"]
+margin_left = -160.0
+margin_top = -70.5
+margin_right = 160.0
+margin_bottom = 70.5
+text = "Meteoritos
+Restante
+10"
+
+[node name="InfoTiempoRestante" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -407.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 154.0
+auto_ocultar = true
+
+[node name="Label" parent="InfoTiempoRestante" index="1"]
+margin_top = -70.5
+margin_bottom = 70.5
+text = "Tiempo
+Restante
+mm:ss"
+
+[node name="AutoOcultarTimer" parent="InfoTiempoRestante" index="2"]
+wait_time = 3.0
+
 [node name="FadeCanvas" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="FadeCanvas"]
@@ -66,3 +101,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeCanvas"]
 anims/default = SubResource( 1 )
 anims/fade_in = SubResource( 2 )
+
+[editable path="InfoMeteoritos"]
+
+[editable path="InfoTiempoRestante"]

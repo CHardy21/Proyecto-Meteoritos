@@ -8,6 +8,7 @@ export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var tiempo_transicion_camara:float = 2.0
 export var enemigo_interceptor:PackedScene = null
+export var tiempo_limite:int = 10
 
 
 onready var contenedor_proyectiles:Node
@@ -16,6 +17,8 @@ onready var contenedor_sector_meteoritos:Node
 onready var contenedor_enemigos:Node
 onready var camara_nivel:Camera2D = $CamaraNivel
 onready var camara_player:Camera2D = $Player/CamaraPlayer
+onready var actualizador_timer:Timer = $ActualizadorTimer
+
 
 var meteoritos_totales:int = 0
 var player:Players = null
@@ -26,9 +29,22 @@ func _ready() -> void:
 	player = DatosGame.get_player_actual()
 	conectar_signals()
 	crear_contenedores()
+	actualizador_timer.start()
 	Eventos.emit_signal("nivel_iniciado")
+	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
+
 
 ## Metedos Customs
+func destruir_nivel() -> void:
+	crear_explosiones(
+		player.global_position,
+		10,
+		1,
+		Vector2(500.0, 300.0)
+	)
+	player.destruir()
+
+
 func conectar_signals() -> void:
 # warning-ignore:return_value_discarded
 	Eventos.connect("disparo", self, "_on_disparo")
@@ -107,7 +123,9 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 
 func controlar_meteoritos_restantes()-> void:
 	meteoritos_totales -= 1
+	Eventos.emit_signal("cambio_numero_meteoritos", meteoritos_totales)
 	print("Numero de meteoritos no destruidos: ", meteoritos_totales)
+	
 	if meteoritos_totales == 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		
@@ -183,6 +201,8 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 	if tipo_peligro == "Meteorito":
 		# creamos dinamicamente el meteorito
 		crear_sector_meteoritos(centro_cam, num_peligros)
+		Eventos.emit_signal("cambio_numero_meteoritos", num_peligros)
+		
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
 
@@ -195,10 +215,15 @@ func _on_spawn_orbital(enemigo:EnemyOrbital)->void:
 	contenedor_enemigos.add_child(enemigo)
 
 # Señales Internas
-
-
 func _on_RestartTimer_timeout() -> void:
 	Eventos.emit_signal("nivel_terminado")
 	yield(get_tree().create_timer(1.0), "timeout")
+# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
+
+func _on_ActualizadorTimer_timeout() -> void:
+	tiempo_limite -= 1
+	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
+	if tiempo_limite == 0:
+		destruir_nivel()
 
