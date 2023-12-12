@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game/UI/ContenedorInformacion.gd"
 }, {
+"base": "ContenedorInformacion",
+"class": "ContenedorInformacionEnergia",
+"language": "GDScript",
+"path": "res://Game/UI/ContenedorInformacionEnergia.gd"
+}, {
 "base": "NaveBase",
 "class": "EnemyBase",
 "language": "GDScript",
@@ -125,6 +130,7 @@ _global_script_class_icons={
 "CamaraPlayer": "",
 "Canion": "",
 "ContenedorInformacion": "",
+"ContenedorInformacionEnergia": "",
 "EnemyBase": "",
 "EnemyInterceptor": "",
 "EnemyOrbital": "",

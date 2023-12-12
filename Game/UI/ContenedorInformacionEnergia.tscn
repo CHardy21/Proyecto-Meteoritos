@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Game/UI/ContenedorInformacion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/UI/ContenedorInformacionEnergia.gd" type="Script" id=2]
+[ext_resource path="res://Game/Kenney Future.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.317647, 0.905882, 0.0862745, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.913725, 0.109804, 0.109804, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 2
+outline_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+font_data = ExtResource( 3 )
+
+[node name="ContenedorInformacionEnergia" instance=ExtResource( 1 )]
+modulate = Color( 1, 1, 1, 1 )
+margin_left = 13.0
+margin_top = 13.0
+margin_right = 294.0
+margin_bottom = 112.0
+script = ExtResource( 2 )
+
+[node name="Label" parent="." index="1"]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = -116.0
+margin_top = 10.0
+margin_right = 116.0
+margin_bottom = 46.0
+text = "Energia Escudo"
+
+[node name="ProgressBar" type="ProgressBar" parent="." index="3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -116.0
+margin_top = 49.0
+margin_right = 116.0
+margin_bottom = 79.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.788235, 0.768627, 0.768627, 1 )
+value = 50.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}

@@ -7,6 +7,9 @@ signal nivel_iniciado()
 signal nivel_terminado()
 signal cambio_numero_meteoritos(numero)
 signal actualizar_tiempo(tiempo_restante)
+signal cambio_energia_laser(energia_max, energia_actual)
+signal ocultar_energia_laser()
+
 # warning-ignore:unused_signal
 signal detecto_zona_recarga(entrando)
 # warning-ignore:unused_signal
