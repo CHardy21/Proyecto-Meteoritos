@@ -85,20 +85,24 @@ func detectar_cuadrante() -> Vector2:
 
 	if abs(angulo_player) <= 45.0:
 		# Player ingresa por la derecha
+# warning-ignore:standalone_expression
 		$RutaOrbitales.rotation_degrees == 180.0
 		return $PosicionesSpawn/Este.position
 	elif abs(angulo_player) > 135.0 and abs(angulo_player) <= 180.0:
 		# Player ingresa po la izquierda
+# warning-ignore:standalone_expression
 		$RutaOrbitales.rotation_degrees == 0.0
 		return $PosicionesSpawn/Oeste.position
 	elif abs(angulo_player) > 45.0 and abs(angulo_player) <= 135.0:
 		# player ingresa o por arriba o por abajo
 		if sign(angulo_player) > 0:
 			# Player ingresa por abajo
+# warning-ignore:standalone_expression
 			$RutaOrbitales.rotation_degrees == 270.0
 			return $PosicionesSpawn/Sur.position
 		else:
 			# Player ingresa por arriba
+# warning-ignore:standalone_expression
 			$RutaOrbitales.rotation_degrees == 90.0
 			return $PosicionesSpawn/Norte.position
 	# por defecto se spawnea desde el norte

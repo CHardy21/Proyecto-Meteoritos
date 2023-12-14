@@ -11,25 +11,37 @@ onready var animaciones: AnimationPlayer = $AnimationPlayer
 # Variables Export
 export var auto_ocultar: bool = false setget set_auto_ocultar
 
+# variables
+var esta_activo:bool = true setget set_esta_activo
 
 # Setters y Getters
 func set_auto_ocultar(valor:bool)-> void:
 	auto_ocultar = valor
+
+func set_esta_activo(valor:bool)-> void:
+	esta_activo = valor
 	
 # Metodos custom
 func mostrar() -> void:
-	animaciones.play("mostrar")
+	if esta_activo:
+		animaciones.play("mostrar")
 
 func ocultar() -> void:
+	if not esta_activo:
+		animaciones.stop()
 	animaciones.play("ocultar")
 
 func mostrar_suavizado() -> void:
+	if not esta_activo:
+		return
+		
 	animaciones.play("mostrar_suavizado")
 	if auto_ocultar:
 		auto_ocultar_timer.start()
 
 func ocultar_suavizado() -> void:
-	animaciones.play("ocultar_suavizado")
+	if esta_activo:
+		animaciones.play("ocultar_suavizado")
 
 func modificar_texto(texto:String) -> void:
 	texto_contenedor.text = texto

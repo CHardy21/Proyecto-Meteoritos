@@ -1,3 +1,4 @@
+#Escudo.gd
 class_name Escudo
 extends Area2D
 
@@ -24,16 +25,15 @@ func controlar_colisionador(esta_desctivado:bool)-> void:
 
 func controlar_energia(consumo:float) -> void:
 	energia += consumo
-	# Solo DEBUG, quitar luego
-	#print("Energia Escudo: ", energia)
-	
 	# Limitamos la recarga de energia hasta la energia original
 	if energia >= energia_original:
 		energia = energia_original
 	elif energia <= 0.0:
+		Eventos.emit_signal("ocultar_energia_escudo")
 		desactivar()
-	
-	
+		return
+	Eventos.emit_signal("cambio_energia_escudo", energia_original, energia)
+
 func activar() -> void:
 	if energia <= 0.0:
 		return

@@ -24,9 +24,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action("key_recarga_escudo"):
 		nave_player.get_escudo().controlar_energia(radio_energia_entregada)
+	if event.is_action_released("key_recarga_escudo"):
+		Eventos.emit_signal("ocultar_energia_escudo")
+
 	if event.is_action("key_recarga_laser"):
 		nave_player.get_laser().controlar_energia(radio_energia_entregada)
-	
 	if event.is_action_released("key_recarga_laser"):
 		Eventos.emit_signal("ocultar_energia_laser")
 
