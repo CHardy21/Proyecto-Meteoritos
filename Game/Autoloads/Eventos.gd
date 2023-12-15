@@ -1,6 +1,7 @@
 #Eventos.gd
 extends Node
 
+# HUD
 # warning-ignore:unused_signal
 signal nivel_iniciado()
 # warning-ignore:unused_signal
@@ -17,6 +18,7 @@ signal ocultar_energia_laser()
 signal cambio_energia_escudo(energia_max, energia_actual)
 # warning-ignore:unused_signal
 signal ocultar_energia_escudo()
+signal minimapa_objeto_creado()
 
 # warning-ignore:unused_signal
 signal detecto_zona_recarga(entrando)
@@ -34,3 +36,4 @@ signal nave_destruida(nave, posicion, explosiones)
 signal base_destruida(base, posiciones)
 # warning-ignore:unused_signal
 signal spawn_orbital(orbital)
+

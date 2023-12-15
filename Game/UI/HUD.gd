@@ -35,6 +35,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("ocultar_energia_escudo", info_escudo, "ocultar")
 # warning-ignore:return_value_discarded
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
+	
 
 func fade_in()-> void:
 	$FadeCanvas/AnimationPlayer.play("fade_in")

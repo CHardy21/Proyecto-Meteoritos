@@ -14,7 +14,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 41.2551
 
-[node name="Player" instance=ExtResource( 2 )]
+[node name="Player" groups=[
+"Players",
+] instance=ExtResource( 2 )]
 z_index = 50
 z_as_relative = false
 collision_layer = 1

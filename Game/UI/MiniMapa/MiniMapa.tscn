@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game/UI/MiniMapa/BG_MiniMapa.png" type="Texture" id=1]
 [ext_resource path="res://Game/UI/MiniMapa/icono_player.png" type="Texture" id=2]
+[ext_resource path="res://Game/UI/MiniMapa/MiniMapa.gd" type="Script" id=3]
+[ext_resource path="res://Game/UI/MiniMapa/icon_plusLarge.png" type="Texture" id=4]
+[ext_resource path="res://Game/UI/MiniMapa/station_C.png" type="Texture" id=5]
+[ext_resource path="res://Game/UI/MiniMapa/star_large.png" type="Texture" id=6]
+[ext_resource path="res://Game/UI/MiniMapa/enemy_E.png" type="Texture" id=7]
 
 [node name="MiniMapa" type="MarginContainer"]
 anchor_left = 0.5
@@ -13,6 +18,7 @@ margin_top = -189.0
 margin_right = 159.0
 margin_bottom = -13.0
 rect_min_size = Vector2( 318, 176 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,16 +31,46 @@ texture = ExtResource( 1 )
 [node name="ContenedorIconos" type="MarginContainer" parent="CuadroMiniMapa"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ZonaRenderMiniMapa" type="TextureRect" parent="CuadroMiniMapa/ContenedorIconos"]
-margin_right = 318.0
-margin_bottom = 176.0
+margin_right = 298.0
+margin_bottom = 156.0
 
 [node name="IconoPlayer" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
 position = Vector2( 156.801, 84.757 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
+
+[node name="IconoBaseEnemy" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
+visible = false
+modulate = Color( 0.984314, 0.00784314, 0.00784314, 1 )
+position = Vector2( 256.734, 134.03 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="IconoEstacionRecarga" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
+visible = false
+modulate = Color( 0.839216, 0.27451, 0.686275, 1 )
+position = Vector2( 78.0706, 132.408 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
+
+[node name="IconoRele" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
+modulate = Color( 0.345098, 0.643137, 0.839216, 1 )
+position = Vector2( 110.324, 38.8913 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+
+[node name="IconoInterceptor" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
+modulate = Color( 0.94902, 0.396078, 0.0627451, 1 )
+position = Vector2( 57.9401, 104.768 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
