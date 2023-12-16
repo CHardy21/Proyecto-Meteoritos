@@ -6,8 +6,9 @@ export var explosion:PackedScene = null
 export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
-export var tiempo_transicion_camara:float = 2.0
 export var enemigo_interceptor:PackedScene = null
+export var rele_masa:PackedScene = null
+export var tiempo_transicion_camara:float = 2.0
 export var tiempo_limite:int = 10
 
 
@@ -22,10 +23,12 @@ onready var actualizador_timer:Timer = $ActualizadorTimer
 
 var meteoritos_totales:int = 0
 var player:Players = null
+var numero_bases_enemigas = 0
 
 
 # Metodos
 func _ready() -> void:
+	numero_bases_enemigas = contabilizar_bases_enemigas()
 	player = DatosGame.get_player_actual()
 	conectar_signals()
 	crear_contenedores()
@@ -60,7 +63,6 @@ func conectar_signals() -> void:
 	Eventos.connect("base_destruida",self,"_on_base_destruida")
 	# warning-ignore:return_value_discarded
 	Eventos.connect("spawn_orbital",self,"_on_spawn_orbital")
-
 
 
 func crear_contenedores() -> void:
@@ -160,7 +162,17 @@ func crear_explosiones(
 			new_explosion.global_position = posicion + crear_posicion_aleatoria(rangos_aleatorios.x, rangos_aleatorios.y)
 			add_child(new_explosion)
 			yield(get_tree().create_timer(intervalo),"timeout")
-	
+
+func crear_rele()-> void:
+	var new_rele_masa:ReleDeMasa = rele_masa.instance()
+	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0) 
+	add_child(new_rele_masa)
+
+
+func contabilizar_bases_enemigas() -> int:
+	return $ContenedorBasesEnemigas.get_child_count()
+
+
 ## Conectar señales externas
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
@@ -210,6 +222,11 @@ func _on_base_destruida(_base:Node2D, pos_partes:Array)->void:
 	for posicion in pos_partes:
 		crear_explosiones(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")
+		
+	numero_bases_enemigas -= 1
+	if numero_bases_enemigas == 0:
+		crear_rele()
+
 
 func _on_spawn_orbital(enemigo:EnemyOrbital)->void:
 	contenedor_enemigos.add_child(enemigo)
