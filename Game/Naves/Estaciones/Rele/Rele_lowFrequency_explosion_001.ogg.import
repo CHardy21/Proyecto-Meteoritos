@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Rele_lowFrequency_explosion_001.ogg-48120e5015216323d5af648950f7a93b.oggstr"
+
+[deps]
+
+source_file="res://Game/Naves/Estaciones/Rele/Rele_lowFrequency_explosion_001.ogg"
+dest_files=[ "res://.import/Rele_lowFrequency_explosion_001.ogg-48120e5015216323d5af648950f7a93b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
