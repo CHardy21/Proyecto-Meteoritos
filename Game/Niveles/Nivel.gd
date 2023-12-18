@@ -35,6 +35,7 @@ func _ready() -> void:
 	actualizador_timer.start()
 	Eventos.emit_signal("nivel_iniciado")
 	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 ## Metedos Customs
@@ -165,9 +166,15 @@ func crear_explosiones(
 
 func crear_rele()-> void:
 	var new_rele_masa:ReleDeMasa = rele_masa.instance()
-	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0) 
+	var pos_aleatoria: Vector2 = crear_posicion_aleatoria(400.0, 200.0)
+	var margen: Vector2 = Vector2(600.0, 600.0)
+	if pos_aleatoria.x < 0:
+		margen.x *= -1
+	if pos_aleatoria.y < 0:
+		margen.y *= -1
+	
+	new_rele_masa.global_position = player.global_position + (margen + pos_aleatoria) 
 	add_child(new_rele_masa)
-
 
 func contabilizar_bases_enemigas() -> int:
 	return $ContenedorBasesEnemigas.get_child_count()

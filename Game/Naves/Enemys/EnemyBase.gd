@@ -5,6 +5,7 @@ extends NaveBase
 # Atributos
 var player_objetivo:Players = null
 var dir_player:Vector2
+var frame_actual:int = 0
 
 
 # Metodos
@@ -15,7 +16,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	rotar_hacia_player()
+	frame_actual += 1
+	if frame_actual % 3 == 0:
+		rotar_hacia_player()
 
 # Señales internas
 func _on_body_entered(body: Node) -> void:

@@ -35,8 +35,11 @@ func _process(_delta: float) -> void:
 
 # Métodos Customs
 func conectar_seniales()-> void:
+# warning-ignore:return_value_discarded
 	Eventos.connect("nivel_iniciado", self, "_on_nivel_iniciado")
+# warning-ignore:return_value_discarded
 	Eventos.connect("nave_destruida",self, "_on_nave_destruida")
+# warning-ignore:return_value_discarded
 	Eventos.connect("minimapa_objeto_creado", self, "obtener_objetos_minimapa")
 
 func _on_nivel_iniciado()-> void:
