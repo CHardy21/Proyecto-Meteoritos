@@ -4,6 +4,8 @@ extends MarginContainer
 ## ATRIBUTOS
 # Variables Export
 export var escala_zoom:float = 4.0
+export var tiempo_visible:float = 5.0
+
 
 # Variables Onready
 onready var zona_renderizado:TextureRect = $CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa
@@ -13,10 +15,31 @@ onready var icono_estacion:Sprite = $CuadroMiniMapa/ContenedorIconos/ZonaRenderM
 onready var icono_interceptor:Sprite = $CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa/IconoInterceptor
 onready var icono_rele:Sprite = $CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa/IconoRele
 onready var items_mini_mapa:Dictionary = {}
+onready var timer_visibilidad:Timer = $TimerVisibilidad
+onready var tween_visibilidad:Tween = $TweenVisibilidad
 
 # Variables
 var escala_grilla:Vector2
 var player:Players = null
+var esta_visible: bool = true setget set_esta_visible
+
+
+# Setters y Getters
+func set_esta_visible(hacer_visible:bool)->void:
+	if hacer_visible:
+		timer_visibilidad.start()
+	esta_visible = hacer_visible
+	
+	tween_visibilidad.interpolate_property(
+		self,
+		"modulate",
+		Color(1, 1, 1, not hacer_visible),
+		Color(1, 1, 1, hacer_visible),
+		0.5,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT
+	)
+	tween_visibilidad.start()
 
 
 # Métodos
@@ -26,12 +49,16 @@ func _ready() -> void:
 	escala_grilla = zona_renderizado.rect_size / (get_viewport_rect().size * escala_zoom)
 	conectar_seniales()
 
-
 func _process(_delta: float) -> void:
 	if not player:
 		return
 	icono_player.rotation_degrees = player.rotation_degrees + 90
 	modificar_posicion_iconos()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("key_minimapa"):
+		set_esta_visible(not esta_visible)
+
 
 # Métodos Customs
 func conectar_seniales()-> void:
@@ -41,6 +68,8 @@ func conectar_seniales()-> void:
 	Eventos.connect("nave_destruida",self, "_on_nave_destruida")
 # warning-ignore:return_value_discarded
 	Eventos.connect("minimapa_objeto_creado", self, "obtener_objetos_minimapa")
+# warning-ignore:return_value_discarded
+	Eventos.connect("minimapa_objeto_destruido", self, "quitar_icono_minimapa")
 
 func _on_nivel_iniciado()-> void:
 	player = DatosGame.get_player_actual()
@@ -62,8 +91,8 @@ func obtener_objetos_minimapa()-> void:
 				sprite_icono = icono_estacion.duplicate()
 			elif objeto is EnemyInterceptor:
 				sprite_icono = icono_interceptor.duplicate()
-#			elif objeto is ReleMasa:
-#				sprite_icono = icono_rele.duplicate()
+			elif objeto is ReleDeMasa:
+				sprite_icono = icono_rele.duplicate()
 			
 			items_mini_mapa[objeto] = sprite_icono
 			items_mini_mapa[objeto].visible = true
@@ -82,5 +111,16 @@ func modificar_posicion_iconos()->void:
 			item_icono.scale = Vector2(0.5, 0.5)
 		else:
 			item_icono.scale = Vector2(0.3, 0.3)
-			
+
+func quitar_icono_minimapa(objeto:Node2D) -> void:
+	if objeto in items_mini_mapa:
+		items_mini_mapa[objeto].queue_free()
+		items_mini_mapa.erase(objeto)
+
+
+# Señales Internas
+
+func _on_TimerVisibilidad_timeout() -> void:
+	if esta_visible:
+		set_esta_visible(false)
 

@@ -18,7 +18,10 @@ signal ocultar_energia_laser()
 signal cambio_energia_escudo(energia_max, energia_actual)
 # warning-ignore:unused_signal
 signal ocultar_energia_escudo()
+# warning-ignore:unused_signal
 signal minimapa_objeto_creado()
+# warning-ignore:unused_signal
+signal minimapa_objeto_destruido()
 
 # warning-ignore:unused_signal
 signal detecto_zona_recarga(entrando)
