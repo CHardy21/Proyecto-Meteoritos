@@ -13,6 +13,7 @@ export var intervalo_spawn:float = 0.8
 # Atributos onready
 onready var impacto_sfx:AudioStreamPlayer2D =  $ImpactosSFX
 onready var timer_spawner: Timer = $TimerSpawnOrbitales
+onready var barra_salud:BarraSalud = $BarraSalud
 
 # Atributos
 var esta_destruida:bool = false
@@ -23,6 +24,7 @@ func _ready() -> void:
 	timer_spawner.wait_time = intervalo_spawn
 	$AnimationPlayer.play(elegir_animacion_aleatoria())
 	seleccionar_ruta()
+	barra_salud.set_valores(hitspoints)
 
 ### Temporal
 #func _process(delta: float) -> void:
@@ -56,6 +58,8 @@ func recibir_danio(danio:float)->void:
 	if hitspoints <= 0.0 and not esta_destruida:
 		esta_destruida = true
 		destruir()
+	
+	barra_salud.set_hitspoint_actual(hitspoints)
 	impacto_sfx.play()
 	
 func destruir()->void:

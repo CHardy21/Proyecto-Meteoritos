@@ -12,7 +12,13 @@ var player_en_zona:bool = false
 
 onready var cargando_sfx: AudioStreamPlayer = $CargaSFX
 onready var estacion_vacia_sfx: AudioStreamPlayer = $VacioSFX
+onready var barra_energia:BarraSalud =  $BarraSalud
+
 # Metodos
+func _ready() -> void:
+	barra_energia.max_value = energia
+	barra_energia.value = energia
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
 		return
@@ -50,7 +56,7 @@ func controlar_energia() -> void:
 	if energia <= 0:
 		estacion_vacia_sfx.play()
 		
-	
+	barra_energia.value = energia
 
 
 # Señales Internas

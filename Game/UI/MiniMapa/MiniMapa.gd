@@ -30,6 +30,7 @@ func set_esta_visible(hacer_visible:bool)->void:
 		timer_visibilidad.start()
 	esta_visible = hacer_visible
 	
+# warning-ignore:return_value_discarded
 	tween_visibilidad.interpolate_property(
 		self,
 		"modulate",
@@ -39,6 +40,7 @@ func set_esta_visible(hacer_visible:bool)->void:
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
+# warning-ignore:return_value_discarded
 	tween_visibilidad.start()
 
 
@@ -115,6 +117,7 @@ func modificar_posicion_iconos()->void:
 func quitar_icono_minimapa(objeto:Node2D) -> void:
 	if objeto in items_mini_mapa:
 		items_mini_mapa[objeto].queue_free()
+# warning-ignore:return_value_discarded
 		items_mini_mapa.erase(objeto)
 
 

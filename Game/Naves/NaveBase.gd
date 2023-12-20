@@ -16,7 +16,16 @@ var estado_actual: int = ESTADO.SPAWN
 onready var canion:Canion = $Canion
 onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var barra_salud: ProgressBar = $BarraSalud
 
+
+# Métodos
+func _ready() -> void:
+	barra_salud.max_value = hitspoint
+	barra_salud.value = hitspoint
+	controlador_estados(estado_actual)
+
+# Métodos Customs
 
 func controlador_estados(nuevo_estado:int) -> void:
 	match nuevo_estado:
@@ -45,7 +54,8 @@ func recibir_danio(danio:float) -> void:
 	# print("vida restante player: ", hitspoint)
 	if hitspoint <= 0.0:
 		destruir()
-		
+	
+	barra_salud.controlar_barra(hitspoint, true)
 	impacto_sfx.play()
 
 ## Señales internas
