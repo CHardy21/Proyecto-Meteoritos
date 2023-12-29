@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/POL-flight-master-short.wav-51ea7605d5d5fbbb025fa7ce4331ac2c.sample"
+
+[deps]
+
+source_file="res://TemporalAssets/Musicas/POL-flight-master-short.wav"
+dest_files=[ "res://.import/POL-flight-master-short.wav-51ea7605d5d5fbbb025fa7ce4331ac2c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

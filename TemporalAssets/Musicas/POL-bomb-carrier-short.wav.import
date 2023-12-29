@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/POL-bomb-carrier-short.wav-c7d12f27e6dbc2f131b274d5314e2947.sample"
+
+[deps]
+
+source_file="res://TemporalAssets/Musicas/POL-bomb-carrier-short.wav"
+dest_files=[ "res://.import/POL-bomb-carrier-short.wav-c7d12f27e6dbc2f131b274d5314e2947.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

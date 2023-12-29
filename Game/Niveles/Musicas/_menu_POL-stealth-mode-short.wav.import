@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/_menu_POL-stealth-mode-short.wav-255c06d27a313e4d9f483309bb9dd29d.sample"
+
+[deps]
+
+source_file="res://Game/Niveles/Musicas/_menu_POL-stealth-mode-short.wav"
+dest_files=[ "res://.import/_menu_POL-stealth-mode-short.wav-255c06d27a313e4d9f483309bb9dd29d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
