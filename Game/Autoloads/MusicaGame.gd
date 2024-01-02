@@ -57,6 +57,7 @@ func fade_in(musica_fade_in:AudioStreamPlayer) -> void:
 	var volumen_original = musica_fade_in.volume_db
 	musica_fade_in.volume_db = volumen_apagado
 	musica_fade_in.play()
+# warning-ignore:return_value_discarded
 	tween_on.interpolate_property(
 		musica_fade_in,
 		"volume_db",
@@ -66,11 +67,13 @@ func fade_in(musica_fade_in:AudioStreamPlayer) -> void:
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
+# warning-ignore:return_value_discarded
 	tween_on.start()
 
 
 func fade_out(musica_fade_out:AudioStreamPlayer) -> void:
 	volumen_original_musica_off = musica_fade_out.volume_db
+# warning-ignore:return_value_discarded
 	tween_off.interpolate_property(
 		musica_fade_out,
 		"volume_db",
@@ -80,10 +83,12 @@ func fade_out(musica_fade_out:AudioStreamPlayer) -> void:
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
+# warning-ignore:return_value_discarded
 	tween_off.start()
 
 
 # Señales Internas
+# warning-ignore:unused_argument
 func _on_TweenMusicaOff_tween_completed(object: Object, key: NodePath) -> void:
 	object.stop()
 	object.volume_db = volumen_original_musica_off

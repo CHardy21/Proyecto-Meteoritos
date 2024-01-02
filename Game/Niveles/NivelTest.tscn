@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Game/Naves/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game/Niveles/Nivel.gd" type="Script" id=2]
@@ -18,6 +18,10 @@
 [ext_resource path="res://Game/Naves/Estaciones/Rele/ReleMasa.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Game/Niveles/Musicas/_ZonaPeligro_POL-bomb-carrier-short.wav" type="AudioStream" id=17]
 [ext_resource path="res://Game/Niveles/Musicas/_BG_POL-flight-master-short.wav" type="AudioStream" id=18]
+[ext_resource path="res://Game/Niveles/Fondos/StarFieldBackground.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Game/Niveles/Fondos/star.svg" type="Texture" id=20]
+
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -30,6 +34,26 @@ rele_masa = ExtResource( 16 )
 tiempo_limite = 100
 musica_nivel = ExtResource( 18 )
 musica_zona_peligro = ExtResource( 17 )
+
+[node name="StarFieldBackground" parent="." instance=ExtResource( 19 )]
+
+[node name="ParallaxLayer" parent="StarFieldBackground" index="1"]
+visible = false
+modulate = Color( 1, 1, 1, 0.615686 )
+motion_mirroring = Vector2( 1920, 1020 )
+
+[node name="StarField" parent="StarFieldBackground/ParallaxLayer2" index="0"]
+visible = true
+material = SubResource( 1 )
+amount = 10
+lifetime = 6.0
+preprocess = 6.0
+randomness = 1.0
+texture = ExtResource( 20 )
+emission_shape = 2
+emission_rect_extents = Vector2( 960, -540 )
+gravity = Vector2( 0, 2 )
+anim_speed_random = 1.0
 
 [node name="HUD" parent="." instance=ExtResource( 12 )]
 
@@ -48,6 +72,7 @@ texture = ExtResource( 11 )
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 motion_mirroring = Vector2( 256, 256 )
 
 [node name="bg_purple" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
@@ -150,6 +175,7 @@ tipo_de_peligro = "Enemigo"
 numero_peligros = 2
 
 [node name="CamaraNivel" type="Camera2D" parent="."]
+position = Vector2( 964.91, 545.384 )
 script = ExtResource( 10 )
 
 [node name="TweenZoom" type="Tween" parent="CamaraNivel"]
@@ -167,5 +193,7 @@ potencia_motor = 150
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
 [connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+
+[editable path="StarFieldBackground"]
 
 [editable path="ContenedorBasesEnemigas/BaseEnemiga"]
