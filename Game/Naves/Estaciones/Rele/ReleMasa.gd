@@ -33,5 +33,6 @@ func _on_DetectorPlayer_body_entered(body:Node) -> void:
 	atraer_player(body)
 
 func _on_Tween_tween_completed(_object, _key):
-	print("Sos un CRACK... Pasaste de Nivel.")
+	#print("Sos un CRACK... Pasaste de Nivel.")
+	Eventos.emit_signal("nivel_completado")
 

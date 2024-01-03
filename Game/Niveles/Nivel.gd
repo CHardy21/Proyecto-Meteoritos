@@ -10,9 +10,9 @@ export var enemigo_interceptor:PackedScene = null
 export var rele_masa:PackedScene = null
 export var tiempo_transicion_camara:float = 2.0
 export var tiempo_limite:int = 10
+export (String, FILE, "*.tscn") var prox_nivel = ""
 export var musica_nivel:AudioStream = null
 export var musica_zona_peligro: AudioStream = null
-
 
 
 onready var contenedor_proyectiles:Node
@@ -70,6 +70,8 @@ func conectar_signals() -> void:
 	Eventos.connect("base_destruida",self,"_on_base_destruida")
 	# warning-ignore:return_value_discarded
 	Eventos.connect("spawn_orbital",self,"_on_spawn_orbital")
+	
+	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
 
 
 func crear_contenedores() -> void:
@@ -258,4 +260,10 @@ func _on_ActualizadorTimer_timeout() -> void:
 	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
 	if tiempo_limite == 0:
 		destruir_nivel()
+
+func _on_nivel_completado()-> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0),"timeout")
+	get_tree().change_scene(prox_nivel)
+
 
