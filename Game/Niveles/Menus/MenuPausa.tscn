@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Game/Niveles/Menus/MenuPausa.gd" type="Script" id=1]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Game/Kenney Future.ttf"
@@ -24,11 +26,14 @@ size = 28
 font_data = SubResource( 5 )
 
 [node name="MenuPausa" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+menu_principal = "res://Game/Niveles/Menus/MenuPrincipal.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0.345098 )
@@ -66,6 +71,7 @@ __meta__ = {
 }
 
 [node name="ButtonContinuar" type="Button" parent="Panel/VBoxContainer"]
+pause_mode = 2
 margin_right = 377.0
 margin_bottom = 144.0
 size_flags_vertical = 7
@@ -73,6 +79,7 @@ custom_fonts/font = SubResource( 2 )
 text = "Continuar..."
 
 [node name="ButtonMenuPrincipal" type="Button" parent="Panel/VBoxContainer"]
+pause_mode = 2
 margin_top = 148.0
 margin_right = 377.0
 margin_bottom = 292.0
@@ -87,9 +94,13 @@ margin_right = 377.0
 margin_bottom = 300.0
 
 [node name="ButtonSalir" type="Button" parent="Panel/VBoxContainer"]
+pause_mode = 2
 margin_top = 304.0
 margin_right = 377.0
 margin_bottom = 448.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 6 )
 text = "Salir"
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonContinuar" to="." method="_on_ButtonContinuar_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonMenuPrincipal" to="." method="_on_ButtonMenuPrincipal_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ButtonSalir" to="." method="_on_ButtonSalir_pressed"]

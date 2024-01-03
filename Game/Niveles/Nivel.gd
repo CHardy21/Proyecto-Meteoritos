@@ -71,6 +71,7 @@ func conectar_signals() -> void:
 	# warning-ignore:return_value_discarded
 	Eventos.connect("spawn_orbital",self,"_on_spawn_orbital")
 	
+# warning-ignore:return_value_discarded
 	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
 
 
@@ -264,6 +265,7 @@ func _on_ActualizadorTimer_timeout() -> void:
 func _on_nivel_completado()-> void:
 	Eventos.emit_signal("nivel_terminado")
 	yield(get_tree().create_timer(1.0),"timeout")
+# warning-ignore:return_value_discarded
 	get_tree().change_scene(prox_nivel)
 
 

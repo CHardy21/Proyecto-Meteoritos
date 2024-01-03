@@ -36,7 +36,6 @@ layer = 2
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [node name="MenuPausa" parent="CanvasLayer" instance=ExtResource( 5 )]
-visible = false
 
 [node name="StarFieldBackground" parent="." instance=ExtResource( 19 )]
 
