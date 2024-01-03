@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://Game/Kenney Mini Square Mono.ttf"
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = SubResource( 4 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://Game/Kenney Mini Square Mono.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+outline_color = Color( 0.956863, 0.941176, 0.709804, 1 )
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://Game/Kenney Mini Square Mono.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 26
+font_data = SubResource( 5 )
+
+[node name="VBoxContainerFooter" type="VBoxContainer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -313.0
+margin_top = -97.0
+margin_right = 313.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Footer" type="Label" parent="."]
+margin_right = 626.0
+margin_bottom = 2.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.745098, 0.341176, 0.341176, 1 )
+text = "Trabajo Final Integrador"
+align = 1
+
+[node name="Footer2" type="Label" parent="."]
+margin_top = 6.0
+margin_right = 626.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.745098, 0.341176, 0.341176, 1 )
+text = "Informatorio - Pixel Lab"
+align = 1
+
+[node name="Footer3" type="Label" parent="."]
+margin_top = 12.0
+margin_right = 626.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.584314, 0.0705882, 0.0705882, 1 )
+text = "by HARDY Christian R."
+align = 1

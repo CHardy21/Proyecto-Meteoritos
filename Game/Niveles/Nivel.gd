@@ -38,7 +38,7 @@ func _ready() -> void:
 	actualizador_timer.start()
 	Eventos.emit_signal("nivel_iniciado")
 	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	MusicaGame.set_streams(musica_nivel, musica_zona_peligro)
 	MusicaGame.play_musica_nivel()
 	

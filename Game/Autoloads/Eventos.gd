@@ -40,5 +40,6 @@ signal base_destruida(base, posiciones)
 # warning-ignore:unused_signal
 signal spawn_orbital(orbital)
 
+# warning-ignore:unused_signal
 signal nivel_completado()
 
