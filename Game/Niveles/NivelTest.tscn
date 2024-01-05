@@ -31,7 +31,7 @@ explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 6 )
 enemigo_interceptor = ExtResource( 13 )
 rele_masa = ExtResource( 16 )
-tiempo_limite = 100
+tiempo_limite = 100000000
 musica_nivel = ExtResource( 18 )
 musica_zona_peligro = ExtResource( 17 )
 
@@ -51,6 +51,10 @@ margin_right = 960.0
 margin_bottom = 540.0
 
 [node name="StarFieldBackground" parent="." instance=ExtResource( 19 )]
+color_fondo = Color( 0.133333, 0.133333, 0.227451, 1 )
+
+[node name="ColorRect" parent="StarFieldBackground" index="0"]
+color = Color( 0.133333, 0.133333, 0.227451, 1 )
 
 [node name="ParallaxLayer" parent="StarFieldBackground" index="1"]
 modulate = Color( 1, 1, 1, 0.615686 )
@@ -160,7 +164,7 @@ environment = ExtResource( 3 )
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 5 )]
 position = Vector2( 1759.86, 272.017 )
 tipo_de_peligro = "Meteorito"
-numero_peligros = 5
+numero_peligros = 1
 
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
@@ -177,7 +181,7 @@ position = Vector2( 2808.53, 2269.97 )
 [node name="SectorDePeligro" parent="TriggersInterceptores" instance=ExtResource( 5 )]
 position = Vector2( 192.333, 214.96 )
 tipo_de_peligro = "Enemigo"
-numero_peligros = 2
+numero_peligros = 5
 
 [node name="CamaraNivel" type="Camera2D" parent="."]
 position = Vector2( 964.91, 545.384 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game/Niveles/Menus/MenuPrincipal.gd" type="Script" id=1]
 [ext_resource path="res://Game/Kenney Future.ttf" type="DynamicFontData" id=2]
@@ -6,16 +6,27 @@
 [ext_resource path="res://Game/Niveles/Fondos/StarFieldBackground.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
-font_path = "res://Game/Advertencia_kenvector_future.ttf"
+font_path = "res://Game/Kenney Blocks.ttf"
 
 [sub_resource type="DynamicFont" id=2]
-size = 40
-outline_size = 3
+size = 100
+outline_size = 1
+outline_color = Color( 0.980392, 0.211765, 0.0352941, 1 )
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Game/Advertencia_kenvector_future.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 56
+outline_size = 8
+outline_color = Color( 0.027451, 0.027451, 0.027451, 1 )
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 36
-outline_size = 2
+outline_size = 6
+outline_color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
 font_data = ExtResource( 2 )
 
 [node name="MenuPrincipal" type="Node"]
@@ -25,22 +36,41 @@ nivel_inicio = "res://Game/Niveles/Nivel_001.tscn"
 [node name="StarFieldBackground" parent="." instance=ExtResource( 4 )]
 color_fondo = Color( 0.0941176, 0.133333, 0.2, 1 )
 
+[node name="ColorRect" parent="StarFieldBackground" index="0"]
+color = Color( 0.0941176, 0.133333, 0.2, 1 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
+modulate = Color( 1, 1, 1, 0.470588 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -958.0
+margin_left = -960.67
 margin_top = -537.0
-margin_right = 958.0
+margin_right = 955.33
 margin_bottom = 537.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -484.17
+margin_top = 99.0
+margin_right = 478.83
+margin_bottom = 258.0
+custom_fonts/font = SubResource( 2 )
+text = "METEORITOS"
+align = 1
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button_Jugar" type="Button" parent="."]
+modulate = Color( 0.317647, 0.898039, 0.0509804, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -49,18 +79,20 @@ margin_left = -282.0
 margin_top = -76.0
 margin_right = 282.0
 margin_bottom = 76.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
+custom_constants/hseparation = 2
 text = "JUGAR"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_Salir" type="Button" parent="."]
+modulate = Color( 0.94902, 0.0352941, 0.0352941, 0.917647 )
 margin_left = 741.0
 margin_top = 656.0
 margin_right = 1192.0
 margin_bottom = 762.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "SALIR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,5 +114,7 @@ margin_top = 64.0
 margin_bottom = 97.0
 [connection signal="pressed" from="Button_Jugar" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Button_Salir" to="." method="_on_Button_Salir_pressed"]
+
+[editable path="StarFieldBackground"]
 
 [editable path="VBoxContainerFooter"]

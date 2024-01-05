@@ -95,6 +95,7 @@ func crear_contenedores() -> void:
 func crear_sector_meteoritos(centro_camara:Vector2, numero_peligros:int)->void:
 	MusicaGame.transicion_musicas()
 	meteoritos_totales = numero_peligros
+	print("Cant. Peligros recibidas en Nivel.gd: ", numero_peligros)
 	var new_sector_meteoritos:SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.global_position = centro_camara
 	camara_nivel.global_position = centro_camara
@@ -212,6 +213,7 @@ func _on_nave_destruida(nave:Players, posicion:Vector2, numero_explosiones:int) 
 
 
 func _on_spawn_meteoritos(pos_spawn:Vector2, dir_meteorito:Vector2, tamanio:float) -> void:
+	print("Cant. Meteoritos: ", meteoritos_totales)
 	var new_meteorito:Meteorito = meteorito.instance()
 	new_meteorito.crear(
 		pos_spawn,

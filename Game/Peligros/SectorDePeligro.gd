@@ -4,7 +4,7 @@ extends Area2D
 
 # Atributos Export
 export (String, "vacio", "Meteorito", "Enemigo") var tipo_de_peligro
-export var numero_peligros:int = 10
+export var numero_peligros:int 
 
 # Señales
 
@@ -21,5 +21,6 @@ func enviar_senial() -> void:
 		tipo_de_peligro,
 		numero_peligros
 	)
+	print("Cant. Peligros enviada desde Sector Peligro: ", numero_peligros)
 	queue_free()
 
